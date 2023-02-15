@@ -27,7 +27,7 @@ public class RobotContainer {
 
 // Replace with CommandPS4Controller or CommandJoystick if needed
 /* Controllers */
-private final XboxController DRVIER =
+private final XboxController DRIVER =
     new XboxController(Ports.Gamepad.DRIVER);
 
 private final XboxController OPERATOR =
