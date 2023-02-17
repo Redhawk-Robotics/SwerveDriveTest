@@ -103,7 +103,7 @@ private void configureDefaultCommands() {}
   // cancelling on release.
   
   //DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-  zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));
+  zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));//A value for the Xbox Controller
   //System.out.print("Swervy");
   
   // slowSpeed.onTrue(new InstantCommand(() -> SwerveDrive.slowSpeed()));

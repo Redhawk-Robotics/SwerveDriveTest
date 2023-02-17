@@ -16,6 +16,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import frc.robot.lib.SwerveModuleConstants;
 
 public interface Ports {
+    
+public static final double stickDeadband = 0.1;//may be 0.01
 
 public interface Gamepad{
     public static final int DRIVER = 0;

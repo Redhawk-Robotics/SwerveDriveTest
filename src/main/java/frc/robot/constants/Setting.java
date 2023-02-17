@@ -17,7 +17,7 @@ public interface Setting {
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
     
     /* Neutral Modes */
-    public static final IdleMode ANGLE_NEUTRAL_MODE = IdleMode.kBrake;//kCoast
+    public static final IdleMode ANGLE_NEUTRAL_MODE = IdleMode.kCoast;//kCoast
     public static final IdleMode DRIVE_NEUTRAL_MODE = IdleMode.kBrake;
 
     /* Sensor Initialization strategy */
