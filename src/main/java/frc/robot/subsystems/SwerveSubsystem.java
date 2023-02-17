@@ -120,12 +120,13 @@ public Rotation2d getYaw() {
     field.setRobotPose(getPose());
 
     for (SwerveModule mod : SwerveMods) {
-      SmartDashboard.putNumber(
-          "Mod " + mod.moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
-      SmartDashboard.putNumber(
-          "Mod " + mod.moduleNumber + " Integrated", mod.getState().angle.getDegrees());
-      SmartDashboard.putNumber(
-          "Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
+      //TODO if need some values for later
+      // SmartDashboard.putNumber(
+      //     "Mod " + mod.moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
+      // SmartDashboard.putNumber(
+      //     "Mod " + mod.moduleNumber + " Integrated", mod.getState().angle.getDegrees());
+      // SmartDashboard.putNumber(
+      //     "Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
     }
   }
 }

@@ -8,7 +8,7 @@ import edu.wpi.first.math.util.Units;
 
 public interface Setting {
     /* Swerve Voltage Compensation */
-    public static final double VOLTAGE_COMP = 6.5;    
+    public static final double VOLTAGE_COMP = 8.5;    
 
     //RobotCharacterizations
     public static final double DRIVETRAIN_TRACKWIDTH_METERS = Units.inchesToMeters(28.5);
@@ -26,7 +26,7 @@ public interface Setting {
 
     /* Motor Inverts */
     public static final boolean DRIVE_MOTOR_INVERT = false;
-    public static final boolean ANGLE_MOTOR_INVERT = true;
+    public static final boolean ANGLE_MOTOR_INVERT = false;
 
     /* Swerve Profiling Values */
     public static final double MAX_VELOCITY_METERS_PER_SECOND = 5880.0 / 60.0 /
