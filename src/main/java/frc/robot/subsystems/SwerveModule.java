@@ -12,6 +12,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.constants.Setting;
 import frc.robot.lib.SwerveModuleConstants;
@@ -91,7 +92,7 @@ private void configAngleMotor() {
     angleController.setP(Setting.ANGLE_KP);
     angleController.setI(Setting.ANGLE_KI);
     angleController.setD(Setting.ANGLE_KD);
-    angleController.setFF(Setting.ANGLE_KF);
+    angleController.setFF(Setting.ANGLE_KFF);
     angleMotor.enableVoltageCompensation(Setting.VOLTAGE_COMP);
     angleMotor.burnFlash();
     Timer.delay(1);
@@ -108,7 +109,7 @@ private void configDriveMotor() {
     driveController.setP(Setting.ANGLE_KP);
     driveController.setI(Setting.ANGLE_KI);
     driveController.setD(Setting.ANGLE_KD);
-    driveController.setFF(Setting.ANGLE_KF);
+    driveController.setFF(Setting.ANGLE_KFF);
     driveMotor.enableVoltageCompensation(Setting.VOLTAGE_COMP);
     driveMotor.burnFlash();
     driveEncoder.setPosition(0.0);
@@ -149,8 +150,8 @@ public SwerveModuleState getState() {
     return new SwerveModuleState(driveEncoder.getVelocity(), getAngle());
     }
 public SwerveModulePosition getPosition(){
-    //SmartDashboard.putNumber("angleEncoder position " + moduleNumber, angleEncoder.getPosition());
-    ///SmartDashboard.putNumber("angleOffset degrees " + moduleNumber, angleOffset.getDegrees());
+    SmartDashboard.putNumber("ANGLEEncoder position " + moduleNumber, angleEncoder.getPosition());
+    SmartDashboard.putNumber("ANGLEOffset degrees " + moduleNumber, angleOffset.getDegrees());
 
     return new SwerveModulePosition(
         driveEncoder.getPosition(),

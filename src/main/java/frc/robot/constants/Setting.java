@@ -43,13 +43,13 @@ public interface Setting {
     public static final double ANGLE_KP = 1.0;//FIXME or put 0.01
     public static final double ANGLE_KI = 0.0;//FIXME
     public static final double ANGLE_KD = 0.0;//FIXME
-    public static final double ANGLE_KF = 0.1;//FIXME or put 0.0
+    public static final double ANGLE_KFF = 0.1;//FIXME or put 0.0
 
     /* Drive Motor PID Values */
     public static final double DRIVE_KP = 0.1;//FIXME
     public static final double DRIVE_KI = 0.0;//FIXME
     public static final double DRIVE_KD = 0.0;//FIXME
-    public static final double DRIVE_KF = 0.0;//FIXME
+    public static final double DRIVE_KFF = 0.0;//FIXME
 
     /* Drive Motor Characterization Values */
     public static final double DRIVE_KS = 0.0;//FIXME
