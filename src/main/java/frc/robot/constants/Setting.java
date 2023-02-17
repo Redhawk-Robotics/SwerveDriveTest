@@ -17,7 +17,7 @@ public interface Setting {
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
     
     /* Neutral Modes */
-    public static final IdleMode ANGLE_NEUTRAL_MODE = IdleMode.kCoast;
+    public static final IdleMode ANGLE_NEUTRAL_MODE = IdleMode.kBrake;//kCoast
     public static final IdleMode DRIVE_NEUTRAL_MODE = IdleMode.kBrake;
 
     /* Sensor Initialization strategy */
@@ -26,7 +26,7 @@ public interface Setting {
 
     /* Motor Inverts */
     public static final boolean DRIVE_MOTOR_INVERT = false;
-    public static final boolean ANGLE_MOTOR_INVERT = false;
+    public static final boolean ANGLE_MOTOR_INVERT = true;
 
     /* Swerve Profiling Values */
     public static final double MAX_VELOCITY_METERS_PER_SECOND = 5880.0 / 60.0 /
@@ -40,10 +40,10 @@ public interface Setting {
     public static final int DRIVE_CONTINOUS_CURRENT_LIMIT = 40;//FIXME
 
     /* Angle Motor PID Values */
-    public static final double ANGLE_KP = 1.0;//FIXME or put 0.01
+    public static final double ANGLE_KP = 0.01;//FIXME or put 0.01
     public static final double ANGLE_KI = 0.0;//FIXME
     public static final double ANGLE_KD = 0.0;//FIXME
-    public static final double ANGLE_KFF = 0.1;//FIXME or put 0.0
+    public static final double ANGLE_KFF = 0.0;//FIXME or put 0.0
 
     /* Drive Motor PID Values */
     public static final double DRIVE_KP = 0.1;//FIXME
@@ -53,8 +53,9 @@ public interface Setting {
 
     /* Drive Motor Characterization Values */
     public static final double DRIVE_KS = 0.0;//FIXME
-    public static final double DRIVE_KV = 0.0;//FIXME
-    public static final double DRIVE_KA = 0.0;//FIXME
+    public static final double DRIVE_KV = 0.0;//FIXME Volt-seconds per meter (max voltage divided by max speed) 12/MAX SPEED
+    public static final double DRIVE_KA = 0.0;//FIXME Volt-seconds^2 per meter (max voltage divided by max accel) 12/max acceleration
+
 
     /** SDS MK4i l1 - 8.14 : 1 */       
     /** SDS MK4i l2 - 6.75 : 1 */

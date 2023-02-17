@@ -150,8 +150,8 @@ public SwerveModuleState getState() {
     return new SwerveModuleState(driveEncoder.getVelocity(), getAngle());
     }
 public SwerveModulePosition getPosition(){
-    SmartDashboard.putNumber("ANGLEEncoder position " + moduleNumber, angleEncoder.getPosition());
-    SmartDashboard.putNumber("ANGLEOffset degrees " + moduleNumber, angleOffset.getDegrees());
+    SmartDashboard.putNumber("Encoder position " + moduleNumber, angleEncoder.getPosition());
+    SmartDashboard.putNumber("Offset degrees " + moduleNumber, angleOffset.getDegrees());
 
     return new SwerveModulePosition(
         driveEncoder.getPosition(),

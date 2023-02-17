@@ -104,7 +104,7 @@ public SwerveModulePosition[] getPositions() {
 
 public void zeroGyro() {
   m_Pigeon.setYaw(0.0);
-  System.out.print("Feild Centric Activate :))");
+  System.out.println("Feild Centric Activate :))");
 }
 
 public Rotation2d getYaw() {
