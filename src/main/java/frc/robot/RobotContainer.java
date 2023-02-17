@@ -104,7 +104,7 @@ private void configureDefaultCommands() {}
   
   //DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));
-  System.out.print("Swervy");
+  //System.out.print("Swervy");
   
   // slowSpeed.onTrue(new InstantCommand(() -> SwerveDrive.slowSpeed()));
 
