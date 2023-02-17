@@ -4,11 +4,16 @@
 
 package frc.robot;
 
+import frc.robot.commands.Drive;
 import frc.robot.constants.Ports;
+import frc.robot.subsystems.SwerveSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,6 +27,7 @@ public class RobotContainer {
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
  
 /* Subsystems */
+private final SwerveSubsystem SwerveDrive = new SwerveSubsystem();
 
 /* Commands */
 
@@ -32,18 +38,41 @@ private final XboxController DRIVER =
 
 private final XboxController OPERATOR =
     new XboxController(Ports.Gamepad.OPERATOR);
+
+/* Drive Controls */
+private final int translationAxis = XboxController.Axis.kLeftY.value;
+private final int strafeAxis = XboxController.Axis.kLeftX.value;
+private final int rotationAxis = XboxController.Axis.kRightX.value;
+
+/* Driver Buttons */
+private final Trigger zeroGyro =
+    new JoystickButton(DRIVER, XboxController.Button.kA.value);
+private final Trigger robotCentric =
+    new JoystickButton(DRIVER, XboxController.Button.kY.value);
+
+private final Trigger slowSpeed =
+    new JoystickButton(DRIVER, XboxController.Button.kRightBumper.value);
     
+//TODO May need to switch the object for each button to JoystickButton
 // Create SmartDashboard chooser for autonomous routines
 private static SendableChooser<Command> Autons = new SendableChooser<>();
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
+/** The container for the robot. Contains subsystems, OI devices, and commands. */
+public RobotContainer() {
+SwerveDrive.setDefaultCommand(
+  new Drive(
+    SwerveDrive,
+      () -> -DRIVER.getRawAxis(translationAxis),
+      () -> -DRIVER.getRawAxis(strafeAxis),
+      () -> -DRIVER.getRawAxis(rotationAxis),
+      () -> robotCentric.getAsBoolean(),
+      () -> slowSpeed.getAsBoolean()));
 
-  // Configure the trigger bindings, defaults, Autons
-    configureButtonBindings();
-    configureDefaultCommands();
-    configureAutons();
-  }
+// Configure the trigger bindings, defaults, Autons
+  configureDefaultCommands();
+  configureButtonBindings();
+  configureAutons();
+}
 
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
@@ -58,21 +87,36 @@ private static SendableChooser<Command> Autons = new SendableChooser<>();
 /****************/
 /*** DEFAULTS ***/
 /****************/
+
 private void configureDefaultCommands() {}
 
 /***************/
 /*** BUTTONS ***/
 /***************/
-  private void configureButtonBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  }
 
+  private void configureButtonBindings() {
+  // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+  // new Trigger(m_exampleSubsystem::exampleCondition)
+  //     .onTrue(new ExampleCommand(m_exampleSubsystem));
+
+  // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
+  // cancelling on release.
+  
+  //DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+  zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));
+  System.out.print("Swervy");
+  
+  // slowSpeed.onTrue(new InstantCommand(() -> SwerveDrive.slowSpeed()));
+
+  // robotCentric.onTrue(new InstantCommand(() -> SwerveDrive.robotCentric()));
+
+  }
   /**************/
   /*** AUTONS ***/
   /**************/
+
   public void configureAutons() {
     //autonChooser.setDefaultOption("Do Nothing", new DoNothingAuton());
-
     SmartDashboard.putData("Autonomous: ", Autons);
 }
 
@@ -81,7 +125,6 @@ private void configureDefaultCommands() {}
    *
    * @return the command to run in autonomous
    */
-  
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     return Autons.getSelected();

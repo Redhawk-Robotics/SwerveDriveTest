@@ -25,7 +25,7 @@
   *  - The Current Limit
   *  - The Open Loop Ramp Rate
   */
- 
+ @Deprecated
  public interface Motors {
  
      public interface Swerve {
