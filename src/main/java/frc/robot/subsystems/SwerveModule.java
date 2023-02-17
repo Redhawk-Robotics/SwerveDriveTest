@@ -84,7 +84,7 @@ private void resetToAbsolute() {
 private void configAngleMotor() {
     angleMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(angleMotor, Usage.kPositionOnly);
-    angleMotor.setSmartCurrentLimit(40);//FIXME IDK find a way to have an equation for the limit 
+    angleMotor.setSmartCurrentLimit(Setting.ANGLE_CONTINOUS_CURRENT_LIMIT);
     angleMotor.setInverted(Setting.ANGLE_MOTOR_INVERT);
     angleMotor.setIdleMode(Setting.ANGLE_NEUTRAL_MODE);
     integratedAngleEncoder.setPositionConversionFactor(Setting.ANGLE_CONVERSION_FACTOR);
@@ -101,8 +101,7 @@ private void configAngleMotor() {
 private void configDriveMotor() {
     driveMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(driveMotor, Usage.kAll);
-    driveMotor.setSmartCurrentLimit(40);//FIXME IDK find a way to have an equation for the limit 
-    driveMotor.setInverted(Setting.DRIVE_MOTOR_INVERT);
+    driveMotor.setSmartCurrentLimit(Setting.DRIVE_CONTINOUS_CURRENT_LIMIT);
     driveMotor.setIdleMode(Setting.DRIVE_NEUTRAL_MODE);
     driveEncoder.setVelocityConversionFactor(Setting.DRIVE_CONVERSION_VELOCITY_FACTOR);
     driveEncoder.setPositionConversionFactor(Setting.DRIVE_CONVERSION_POSITION_FACTOR);

@@ -1,8 +1,5 @@
 package frc.robot.constants;
 
-import com.ctre.phoenix.sensors.AbsoluteSensorRange;
-import com.ctre.phoenix.sensors.SensorInitializationStrategy;
-import com.ctre.phoenix.sensors.SensorTimeBase;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.geometry.Translation2d;
@@ -24,32 +21,32 @@ public interface Setting {
     public static final IdleMode DRIVE_NEUTRAL_MODE = IdleMode.kBrake;
 
     /* Sensor Initialization strategy */
-    public static final SensorInitializationStrategy ANGLE_SENSOR_INIT_STRATEGY = SensorInitializationStrategy.BootToZero;
-    public static final SensorInitializationStrategy DRIVE_SENSOR_INIT_STRATEGY = SensorInitializationStrategy.BootToZero;
+    //public static final SensorInitializationStrategy ANGLE_SENSOR_INIT_STRATEGY = SensorInitializationStrategy.BootToZero;
+    //public static final SensorInitializationStrategy DRIVE_SENSOR_INIT_STRATEGY = SensorInitializationStrategy.BootToZero;
 
     /* Motor Inverts */
-    public static final boolean DRIVE_MOTOR_INVERT = true;
-    public static final boolean ANGLE_MOTOR_INVERT = true;
+    public static final boolean DRIVE_MOTOR_INVERT = false;
+    public static final boolean ANGLE_MOTOR_INVERT = false;
 
     /* Swerve Profiling Values */
     public static final double MAX_VELOCITY_METERS_PER_SECOND = 5880.0 / 60.0 /
-    (14.0 / 50.0) * (27.0 / 17.0) * (15.0 / 45.0) * 0.10033 * Math.PI;    
+    (14.0 / 50.0) * (27.0 / 17.0) * (15.0 / 45.0) * 0.10033 * Math.PI;      
 
     public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = MAX_VELOCITY_METERS_PER_SECOND /
     Math.hypot(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0);
     
     /* Swerve Current Limiting */
     public static final int ANGLE_CONTINOUS_CURRENT_LIMIT = 40;//FIXME
-    public static final int driveContinuousCurrentLimit = 40;//FIXME
+    public static final int DRIVE_CONTINOUS_CURRENT_LIMIT = 40;//FIXME
 
     /* Angle Motor PID Values */
-    public static final double ANGLE_KP = 0.0;//FIXME
+    public static final double ANGLE_KP = 1.0;//FIXME or put 0.01
     public static final double ANGLE_KI = 0.0;//FIXME
     public static final double ANGLE_KD = 0.0;//FIXME
-    public static final double ANGLE_KF = 0.0;//FIXME
+    public static final double ANGLE_KF = 0.1;//FIXME or put 0.0
 
     /* Drive Motor PID Values */
-    public static final double DRIVE_KP = 500.0;//FIXME
+    public static final double DRIVE_KP = 0.1;//FIXME
     public static final double DRIVE_KI = 0.0;//FIXME
     public static final double DRIVE_KD = 0.0;//FIXME
     public static final double DRIVE_KF = 0.0;//FIXME
@@ -59,7 +56,7 @@ public interface Setting {
     public static final double DRIVE_KV = 0.0;//FIXME
     public static final double DRIVE_KA = 0.0;//FIXME
 
-    /** SDS MK4i l1 - 8.14 : 1 */
+    /** SDS MK4i l1 - 8.14 : 1 */       
     /** SDS MK4i l2 - 6.75 : 1 */
     /** SDS MK4i l3 - 6.12 : 1 */
     ///public static final double driveGearRatio = (50.0/14.0) * (17.0/27.0) * (45.0/15.0); // 6.75:1
@@ -81,8 +78,8 @@ public interface Setting {
     * loop driving.
     * We found a small open loop ramp (0.25) helps with tread wear, tipping, etc
     */
-    public static final double OPEN_LOOP_RAMP = 0.25;
-    public static final double CLOSED_LOOP_RAMP = 0.0;
+    // public static final double OPEN_LOOP_RAMP = 0.25;
+    // public static final double CLOSED_LOOP_RAMP = 0.0;
 
     // /* Swerve Current Limiting */
     // private static final int ANGLE_CONTINUOUS_CURRENT_LIMIT = 25;
@@ -105,9 +102,9 @@ public interface Setting {
     /* Angle Encoder Invert */
     public static final boolean CAN_CODER_INVERT = false;
     
-    public static final AbsoluteSensorRange CANCODER_ABSOLUTE_SENSOR_RANGE = AbsoluteSensorRange.Unsigned_0_to_360;
-    public static final SensorInitializationStrategy CANCODER_SENSOR_INIT_STRATEGY = SensorInitializationStrategy.BootToAbsolutePosition;
-    public static final SensorTimeBase CANCODER_SENSOR_TIME_BASE = SensorTimeBase.PerSecond;        
+    // public static final AbsoluteSensorRange CANCODER_ABSOLUTE_SENSOR_RANGE = AbsoluteSensorRange.Unsigned_0_to_360;
+    // public static final SensorInitializationStrategy CANCODER_SENSOR_INIT_STRATEGY = SensorInitializationStrategy.BootToAbsolutePosition;
+    // public static final SensorTimeBase CANCODER_SENSOR_TIME_BASE = SensorTimeBase.PerSecond;        
 
     /* Swerve Kinematics 
     * No need to ever change this unless you are not doing a traditional rectangular/square 4 module swerve */
