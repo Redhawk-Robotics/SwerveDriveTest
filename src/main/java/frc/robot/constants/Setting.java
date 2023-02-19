@@ -40,10 +40,10 @@ public interface Setting {
     public static final int DRIVE_CONTINOUS_CURRENT_LIMIT = 40;//FIXME
 
     /* Angle Motor PID Values */
-    public static final double ANGLE_KP = 0.01;//FIXME or put 0.01
+    public static final double ANGLE_KP = 0.01;//FIXME 
     public static final double ANGLE_KI = 0.0;//FIXME
     public static final double ANGLE_KD = 0.0;//FIXME
-    public static final double ANGLE_KFF = 0.0;//FIXME or put 0.0
+    public static final double ANGLE_KFF = 0.0;//FIXME 
 
     /* Drive Motor PID Values */
     public static final double DRIVE_KP = 0.1;//FIXME
@@ -101,7 +101,7 @@ public interface Setting {
 
     /*------- CANcoder Config ------- */
     /* Angle Encoder Invert */
-    public static final boolean CAN_CODER_INVERT = false;
+    public static final boolean CAN_CODER_INVERT = false;//Change to true if moving the module right isnt positive
     
     // public static final AbsoluteSensorRange CANCODER_ABSOLUTE_SENSOR_RANGE = AbsoluteSensorRange.Unsigned_0_to_360;
     // public static final SensorInitializationStrategy CANCODER_SENSOR_INIT_STRATEGY = SensorInitializationStrategy.BootToAbsolutePosition;
@@ -119,4 +119,7 @@ public interface Setting {
         // Back right
         new Translation2d(-DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -DRIVETRAIN_WHEELBASE_METERS / 2.0)
     );
+    public static final class AutoConstants {
+
+    }
 }

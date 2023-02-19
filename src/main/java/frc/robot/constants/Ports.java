@@ -66,8 +66,4 @@ public static final class BACK_RIGHT_MODULE3{
     public static final SwerveModuleConstants constants = new SwerveModuleConstants(BACK_RIGHT_MODULE_DRIVE_MOTOR,
     BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_STEER_ENCODER, BACK_RIGHT_MODULE_STEER_OFFSET);
     }
-
- public static final class AutoConstants {
-
- }
 }

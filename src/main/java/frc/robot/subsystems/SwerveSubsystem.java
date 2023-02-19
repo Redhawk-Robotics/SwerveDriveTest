@@ -95,8 +95,8 @@ public SwerveModuleState[] getStates() {
 public SwerveModulePosition[] getPositions() {
   SwerveModulePosition[] positions = new SwerveModulePosition[4];
   for (SwerveModule mod : SwerveMods) {
-    SmartDashboard.putNumber("position: module " + mod.moduleNumber, mod.getPosition().distanceMeters);
-    SmartDashboard.putNumber("angle: module " + mod.moduleNumber, mod.getPosition().angle.getDegrees());
+    //SmartDashboard.putNumber("position: module " + mod.moduleNumber, mod.getPosition().distanceMeters);//FIXME put back later if needed
+    ///SmartDashboard.putNumber("angle: module " + mod.moduleNumber, mod.getPosition().angle.getDegrees());
     positions[mod.moduleNumber] = mod.getPosition();
   }
   return positions;
