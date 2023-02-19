@@ -16,7 +16,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import frc.robot.lib.SwerveModuleConstants;
 
 public interface Ports {
-    
+
 public static final double stickDeadband = 0.1;//may be 0.01
 
 public interface Gamepad{
@@ -33,7 +33,7 @@ public static final class FRONT_LEFT_MODULE0{
     public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 1; // FIXME Set front left module drive motor ID 
     public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 2; // FIXME Set front left module steer motor ID
     public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 11; // FIXME Set front left steer encoder ID 
-    public static final Rotation2d FRONT_LEFT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(0.0); // FIXME Measure and set front left steer offset
+    public static final Rotation2d FRONT_LEFT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(319.130859375); // FIXME Measure and set front left steer offset
     public static final SwerveModuleConstants constants = new SwerveModuleConstants(FRONT_LEFT_MODULE_DRIVE_MOTOR,
     FRONT_LEFT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_STEER_ENCODER, FRONT_LEFT_MODULE_STEER_OFFSET);
 }
@@ -43,7 +43,7 @@ public static final class FRONT_RIGHT_MODULE1{
     public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 3; // FIXME Set front right drive motor ID
     public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 4; // FIXME Set front right steer motor ID
     public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 22; // FIXME Set front right steer encoder ID
-    public static final Rotation2d FRONT_RIGHT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(0.0); // FIXME Measure and set front right steer offset
+    public static final Rotation2d FRONT_RIGHT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(123.837890625); // FIXME Measure and set front right steer offset
     public static final SwerveModuleConstants constants = new SwerveModuleConstants(FRONT_RIGHT_MODULE_DRIVE_MOTOR,
     FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_RIGHT_MODULE_STEER_ENCODER, FRONT_RIGHT_MODULE_STEER_OFFSET);
 }
@@ -53,7 +53,7 @@ public static final class BACK_LEFT_MODULE2{
     public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 5; // FIXME Set back left drive motor ID 
     public static final int BACK_LEFT_MODULE_STEER_MOTOR = 6; // FIXME Set back left steer motor ID 
     public static final int BACK_LEFT_MODULE_STEER_ENCODER = 33; // FIXME Set back left steer encoder ID 
-    public static final Rotation2d BACK_LEFT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(0.0); // FIXME Measure and set back left steer offset
+    public static final Rotation2d BACK_LEFT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(246.005859375 + 180); // FIXME Measure and set back left steer offset
     public static final SwerveModuleConstants constants = new SwerveModuleConstants(BACK_LEFT_MODULE_DRIVE_MOTOR,
     BACK_LEFT_MODULE_STEER_MOTOR, BACK_LEFT_MODULE_STEER_ENCODER, BACK_LEFT_MODULE_STEER_OFFSET);
 }
@@ -62,7 +62,7 @@ public static final class BACK_RIGHT_MODULE3{
     public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 7; // FIXME Set back right drive motor ID
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 8; // FIXME Set back right steer motor ID 
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 44; // FIXME Set back right steer encoder ID 
-    public static final Rotation2d BACK_RIGHT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(0.0); // FIXME Measure and set back right steer offset
+    public static final Rotation2d BACK_RIGHT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(117.59765625); // FIXME Measure and set back right steer offset
     public static final SwerveModuleConstants constants = new SwerveModuleConstants(BACK_RIGHT_MODULE_DRIVE_MOTOR,
     BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_STEER_ENCODER, BACK_RIGHT_MODULE_STEER_OFFSET);
     }
