@@ -2,13 +2,13 @@
   "waypoints": [
     {
       "anchorPoint": {
-        "x": 1.6425305707754276,
-        "y": 3.0060960121920246
+        "x": 1.7999927428426288,
+        "y": 2.7484306397184226
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.6425305707754303,
-        "y": 3.0060960121920246
+        "x": 2.7999927428426323,
+        "y": 2.7484306397184226
       },
       "holonomicAngle": 0,
       "isReversal": false,
@@ -16,7 +16,9 @@
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
-        "names": [],
+        "names": [
+          "Starting Position"
+        ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
         "waitTime": 0
@@ -24,51 +26,63 @@
     },
     {
       "anchorPoint": {
-        "x": 3.0,
-        "y": 5.0
+        "x": 5.397147937153017,
+        "y": 2.73268260822236
       },
       "prevControl": {
-        "x": 3.0,
-        "y": 4.0
+        "x": 6.2560325120650235,
+        "y": 2.7469973511375603
       },
       "nextControl": {
-        "x": 3.0,
-        "y": 4.0
+        "x": 4.53826336224101,
+        "y": 2.71836786530716
       },
       "holonomicAngle": 0,
-      "isReversal": true,
+      "isReversal": false,
       "velOverride": null,
-      "isLocked": false,
-      "isStopPoint": false,
+      "isLocked": true,
+      "isStopPoint": true,
       "stopEvent": {
-        "names": [],
+        "names": [
+          "Off the Charge Station"
+        ],
         "executionBehavior": "parallel",
-        "waitBehavior": "none",
-        "waitTime": 0
+        "waitBehavior": "after",
+        "waitTime": 2.0
       }
     },
     {
       "anchorPoint": {
-        "x": 5.0,
-        "y": 3.0
+        "x": 3.812910482963823,
+        "y": 2.7461083493595564
       },
       "prevControl": {
-        "x": 4.0,
-        "y": 3.0
+        "x": 3.8196233535324216,
+        "y": 2.7595340904967536
       },
       "nextControl": null,
-      "holonomicAngle": 0,
+      "holonomicAngle": 0.0,
       "isReversal": false,
       "velOverride": null,
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
-        "names": [],
+        "names": [
+          "Balance"
+        ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
         "waitTime": 0
       }
     }
   ],
-  "markers": []
+  "markers": [
+    {
+      "position": 2.0,
+      "names": [
+        "event",
+        "On the Charge Station"
+      ]
+    }
+  ]
 }

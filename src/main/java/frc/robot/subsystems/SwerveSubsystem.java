@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.sensors.Pigeon2;
 
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -23,7 +24,7 @@ import frc.robot.constants.Setting;
 public class SwerveSubsystem extends SubsystemBase {
   /** Creates a new SwerveSubsystem. */
   private SwerveDriveOdometry swerveOdometry;
-  // private SwerveDrivePoseEstimator poseEstimator;
+  private SwerveDrivePoseEstimator poseEstimator;
   private SwerveModule[] SwerveMods;
   private Pigeon2 m_Pigeon;
   private Field2d field;
@@ -45,9 +46,9 @@ public class SwerveSubsystem extends SubsystemBase {
 };
 
 swerveOdometry = new SwerveDriveOdometry(Setting.M_KINEMATICS, getYaw(), getPositions());
-// poseEstimator = new
-// SwerveDrivePoseEstimator(Ports.SwerveDriveChars.m_kinematics, getYaw(),
-// getPositions(), new Pose2d(), STATE_STD_DEVS, VISION_MEASUREMENT_STD_DEVS);
+poseEstimator = new
+SwerveDrivePoseEstimator(Setting.M_KINEMATICS, getYaw(),
+ getPositions(), new Pose2d());
 
 field = new Field2d();
 SmartDashboard.putData("Field", field);
