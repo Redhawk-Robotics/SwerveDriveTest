@@ -37,12 +37,12 @@ public interface Setting {
     
     /* Swerve Current Limiting */
     public static final int ANGLE_CONTINOUS_CURRENT_LIMIT = 40;//FIXME
-    public static final int DRIVE_CONTINOUS_CURRENT_LIMIT = 40;//FIXME
+    public static final int DRIVE_CONTINOUS_CURRENT_LIMIT = 65;//FIXME
 
     /* Angle Motor PID Values */
-    public static final double ANGLE_KP = 0.01;//FIXME 
+    public static final double ANGLE_KP = 0.01;//FIXME //try 1.0
     public static final double ANGLE_KI = 0.0;//FIXME
-    public static final double ANGLE_KD = 0.0;//FIXME
+    public static final double ANGLE_KD = 0.0;//FIXME //try 0.1
     public static final double ANGLE_KFF = 0.0;//FIXME 
 
     /* Drive Motor PID Values */

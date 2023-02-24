@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.commands.Swerve.Drive;
 import frc.robot.constants.Ports;
 import frc.robot.subsystems.SwerveSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -52,6 +53,15 @@ private final Trigger robotCentric =
 
 private final Trigger slowSpeed =
     new JoystickButton(DRIVER, XboxController.Button.kRightBumper.value);
+
+//Additional buttons
+private final Trigger highGrid = 
+    new JoystickButton(DRIVER, XboxController.Button.kLeftBumper.value);
+
+private final Trigger Tester = 
+    new JoystickButton(DRIVER, XboxController.Button.kB.value);
+
+  
     
 //TODO May need to switch the object for each button to JoystickButton
 // Create SmartDashboard chooser for autonomous routines
@@ -104,6 +114,7 @@ private void configureDefaultCommands() {}
   
   //DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));//A value for the Xbox Controller
+
   //System.out.print("Swervy");
   
   // slowSpeed.onTrue(new InstantCommand(() -> SwerveDrive.slowSpeed()));
