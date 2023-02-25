@@ -4,8 +4,6 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.sensors.Pigeon2;
-
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -20,13 +18,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Ports;
 import frc.robot.constants.Setting;
+import frc.robot.subsystems.modules.PiegeonModule;
 
 public class SwerveSubsystem extends SubsystemBase {
   /** Creates a new SwerveSubsystem. */
   private SwerveDriveOdometry swerveOdometry;
   private SwerveDrivePoseEstimator poseEstimator;
   private SwerveModule[] SwerveMods;
-  private Pigeon2 m_Pigeon;
+  private PiegeonModule m_Pigeon;
   private Field2d field;
   
   public SwerveSubsystem() {
@@ -35,7 +34,7 @@ public class SwerveSubsystem extends SubsystemBase {
   // The important thing about how you configure your gyroscope is that rotating
   // the robot counter-clockwise should
   // cause the angle reading to increase until it wraps back over to zero.
-  m_Pigeon = new Pigeon2(Ports.Gyro.DRIVETRAIN_PIGEON_ID);
+  m_Pigeon = PiegeonModule.getPigeonModule();
   zeroGyro();
   
   SwerveMods = new SwerveModule[] {
