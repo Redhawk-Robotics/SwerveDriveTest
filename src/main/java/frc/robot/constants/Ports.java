@@ -28,6 +28,17 @@ public interface Gyro{
     public static final int DRIVETRAIN_PIGEON_ID = 39;
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 }
+public static final class arm{
+public static final int leftArm = 13;
+public static final int rightArm = 14;
+}
+public static final class extend{
+public static final int extend = 15;
+}
+public static final class claw{
+public static final int leftClaw = 16;
+public static final int rightClaw = 17;
+}
 //FRONT_LEFT_MODULE
 public static final class FRONT_LEFT_MODULE0{
     public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 1; // FIXME Set front left module drive motor ID 
