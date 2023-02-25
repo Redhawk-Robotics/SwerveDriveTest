@@ -19,12 +19,12 @@ public interface Ports {
 
 public static final double stickDeadband = 0.1;//may be 0.01
 
-public interface Gamepad{
+public static final class Gamepad{
     public static final int DRIVER = 0;
     public static final int OPERATOR = 1;
     public static final int DEBUGGER = 2;
 }
-public interface Gyro{
+public static final class Gyro{
     public static final int DRIVETRAIN_PIGEON_ID = 39;
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 }
