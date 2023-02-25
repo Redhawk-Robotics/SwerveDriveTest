@@ -24,6 +24,11 @@ public class GyroSubsystem extends SubsystemBase {
     return this.piegeonModule.getYaw();
   }
 
+  // Going to change, TODO TESTS
+  public double getAnglePerpendicularToGroundDEG() {
+    return this.piegeonModule.getYaw();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
