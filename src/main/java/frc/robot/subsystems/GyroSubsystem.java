@@ -9,24 +9,24 @@ import frc.robot.subsystems.modules.PiegeonModule;
 
 public class GyroSubsystem extends SubsystemBase {
 
-  private PiegeonModule piegeonModule;
+  private PiegeonModule pigeonModule;
 
   /** Creates a new Gyro. */
   public GyroSubsystem() {
-    this.piegeonModule = PiegeonModule.getPigeonModule();
+    this.pigeonModule = PiegeonModule.getPigeonModule();
   }
 
   public void setYaw(double yaw) {
-    this.piegeonModule.setYaw(yaw);
+    this.pigeonModule.setYaw(yaw);
   }
 
   public double getYaw() {
-    return this.piegeonModule.getYaw();
+    return this.pigeonModule.getYaw();
   }
 
   // Going to change, TODO TESTS
   public double getAnglePerpendicularToGroundDEG() {
-    return this.piegeonModule.getYaw();
+    return this.pigeonModule.getYaw();
   }
 
   @Override
