@@ -14,8 +14,8 @@ import frc.robot.subsystems.SwerveSubsystem;
 
 public class AutoBalance extends CommandBase {
   /** Creates a new AutoBalance. */
-  
-  private GyroSubsystem m_Gyro; 
+
+  private GyroSubsystem m_Gyro;
   private SwerveSubsystem s_Swerve;
   private Timer time;
   private double prevTime = 0;
@@ -24,10 +24,10 @@ public class AutoBalance extends CommandBase {
   private double sumOfError = 0;
   private final double chargePadLengthMETERS = 4. / 3.281;
   private final double chargePadTiltDEG = 15.;
+  private boolean isFinishedBool = false;
   private double Kp = 1;
   private double Ki = 0;
   private double Kd = 0;
-
 
   public AutoBalance(SwerveSubsystem s_Swerve, GyroSubsystem m_Gyro) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -36,7 +36,7 @@ public class AutoBalance extends CommandBase {
     addRequirements(s_Swerve, m_Gyro);
 
     time = new Timer();
-}
+  }
 
   // Called when the command is initially scheduled.
   @Override
@@ -45,6 +45,7 @@ public class AutoBalance extends CommandBase {
     time.reset();
     System.out.println(this.m_Gyro.getYaw());
     SmartDashboard.getNumber("Yaw", this.m_Gyro.getYaw());
+    isFinishedBool = false;
     time.start();
   }
 
@@ -62,28 +63,37 @@ public class AutoBalance extends CommandBase {
     System.out.println("Output: " + output);
 
     // TODO fix MAX_VELOCITY_METERS_PER_SECOND (bros going too fast)
-    double translationVal = (Setting.MAX_VELOCITY_METERS_PER_SECOND / chargePadTiltDEG) * output; // Assume 15* tilt means MAX transliation
+    double translationVal = (Setting.MAX_VELOCITY_METERS_PER_SECOND / chargePadTiltDEG) * output; // Assume 15* tilt
+                                                                                                  // means MAX
+                                                                                                  // transliation
     System.out.println("translationVal: " + translationVal);
 
     // Might need to clamp the transilation values
     s_Swerve.drive(
-      new Translation2d(translationVal, 0),
-      0,
-      true,
-      true);
+        new Translation2d(translationVal, 0),
+        0,
+        true,
+        true);
 
     prevTime = currTime;
     sumOfError += error;
     prevError = error;
+
+    // test if we should stop?
+    if (Math.abs(error) < 2) {
+      // perhaps we should check if the error hasn't changed in the elapsed X time
+      isFinishedBool = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isFinishedBool;
   }
 }
