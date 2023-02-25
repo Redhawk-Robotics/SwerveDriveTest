@@ -6,10 +6,9 @@ package frc.robot.Autons;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class AutoBalance extends CommandBase {
-  /** Creates a new AutoBalance. */
-
-  public AutoBalance() {
+public class followTrajectoryCommand extends CommandBase {
+  /** Creates a new followTrajectoryCommand. */
+  public followTrajectoryCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
