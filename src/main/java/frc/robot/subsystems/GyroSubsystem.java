@@ -5,15 +5,15 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.modules.PiegeonModule;
+import frc.robot.subsystems.modules.PigeonModule;
 
 public class GyroSubsystem extends SubsystemBase {
 
-  private PiegeonModule pigeonModule;
+  private PigeonModule pigeonModule;
 
   /** Creates a new Gyro. */
   public GyroSubsystem() {
-    this.pigeonModule = PiegeonModule.getPigeonModule();
+    this.pigeonModule = PigeonModule.getPigeonModule();
   }
 
   public void setYaw(double yaw) {

@@ -63,9 +63,8 @@ public class AutoBalance extends CommandBase {
     System.out.println("Output: " + output);
 
     // TODO fix MAX_VELOCITY_METERS_PER_SECOND (bros going too fast)
-    double translationVal = (Setting.MAX_VELOCITY_METERS_PER_SECOND / chargePadTiltDEG) * output; // Assume 15* tilt
-                                                                                                  // means MAX
-                                                                                                  // transliation
+     // Assume 15* tilt means MAX transliation
+    double translationVal = (Setting.MAX_VELOCITY_METERS_PER_SECOND / chargePadTiltDEG) * output;
     System.out.println("translationVal: " + translationVal);
 
     // Might need to clamp the transilation values

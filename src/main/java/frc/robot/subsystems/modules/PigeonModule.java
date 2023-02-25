@@ -4,18 +4,18 @@ import com.ctre.phoenix.sensors.Pigeon2;
 
 import frc.robot.constants.Ports;
 
-public class PiegeonModule {
+public class PigeonModule {
 
     private final Pigeon2 m_Pigeon;
-    private static PiegeonModule singleton;
+    private static PigeonModule singleton;
 
-    private PiegeonModule() {
+    private PigeonModule() {
         this.m_Pigeon = new Pigeon2(Ports.Gyro.DRIVETRAIN_PIGEON_ID);
     }
-    
-    public static PiegeonModule getPigeonModule() {
+
+    public static PigeonModule getPigeonModule() {
         if (singleton == null) {
-            singleton = new PiegeonModule();
+            singleton = new PigeonModule();
         }
         return singleton;
     }
