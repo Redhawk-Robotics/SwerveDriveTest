@@ -10,7 +10,7 @@ public class PigeonModule {
     private static PigeonModule singleton;
 
     private PigeonModule() {
-        this.m_Pigeon = new Pigeon2(Ports.Gyro.DRIVETRAIN_PIGEON_ID);
+        this.m_Pigeon = new Pigeon2(Ports.Gyro.drivetrainPigeonID);
     }
 
     public static PigeonModule getPigeonModule() {

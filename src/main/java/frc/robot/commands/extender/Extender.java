@@ -6,9 +6,9 @@ package frc.robot.commands.extender;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class extendHigh extends CommandBase {
-  /** Creates a new extendHigh. */
-  public extendHigh() {
+public class Extender extends CommandBase {
+  /** Creates a new Extender. */
+  public Extender() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

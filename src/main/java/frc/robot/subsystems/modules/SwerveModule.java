@@ -40,7 +40,7 @@ private final SparkMaxPIDController driveController;
 private final SparkMaxPIDController angleController;
 
 SimpleMotorFeedforward feedForward =
-new SimpleMotorFeedforward(Setting.DRIVE_KS,Setting.DRIVE_KV,Setting.DRIVE_KA);//FIXME find values
+new SimpleMotorFeedforward(Setting.driveKS,Setting.driveKV,Setting.driveKA);//FIXME find values
 
 public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants){
     this.moduleNumber = moduleNumber;
@@ -85,15 +85,15 @@ private void resetToAbsolute() {
 private void configAngleMotor() {
     angleMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(angleMotor, Usage.kPositionOnly);
-    angleMotor.setSmartCurrentLimit(Setting.ANGLE_CONTINOUS_CURRENT_LIMIT);
-    angleMotor.setInverted(Setting.ANGLE_MOTOR_INVERT);
-    angleMotor.setIdleMode(Setting.ANGLE_NEUTRAL_MODE);
-    integratedAngleEncoder.setPositionConversionFactor(Setting.ANGLE_CONVERSION_FACTOR);
-    angleController.setP(Setting.ANGLE_KP);
-    angleController.setI(Setting.ANGLE_KI);
-    angleController.setD(Setting.ANGLE_KD);
-    angleController.setFF(Setting.ANGLE_KFF);
-    angleMotor.enableVoltageCompensation(Setting.VOLTAGE_COMP);
+    angleMotor.setSmartCurrentLimit(Setting.angleContinousCurentLimit);
+    angleMotor.setInverted(Setting.angleMotorInvert);
+    angleMotor.setIdleMode(Setting.angleNeutralMode);
+    integratedAngleEncoder.setPositionConversionFactor(Setting.angleConversionFactor);
+    angleController.setP(Setting.angleKP);
+    angleController.setI(Setting.angleKI);
+    angleController.setD(Setting.angleKD);
+    angleController.setFF(Setting.angleKFF);
+    angleMotor.enableVoltageCompensation(Setting.voltageComp);
     angleMotor.burnFlash();
     Timer.delay(1);
     resetToAbsolute();
@@ -102,21 +102,21 @@ private void configAngleMotor() {
 private void configDriveMotor() {
     driveMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(driveMotor, Usage.kAll);
-    driveMotor.setSmartCurrentLimit(Setting.DRIVE_CONTINOUS_CURRENT_LIMIT);
-    driveMotor.setIdleMode(Setting.DRIVE_NEUTRAL_MODE);
-    driveEncoder.setVelocityConversionFactor(Setting.DRIVE_CONVERSION_VELOCITY_FACTOR);
-    driveEncoder.setPositionConversionFactor(Setting.DRIVE_CONVERSION_POSITION_FACTOR);
-    driveController.setP(Setting.ANGLE_KP);
-    driveController.setI(Setting.ANGLE_KI);
-    driveController.setD(Setting.ANGLE_KD);
-    driveController.setFF(Setting.ANGLE_KFF);
-    driveMotor.enableVoltageCompensation(Setting.VOLTAGE_COMP);
+    driveMotor.setSmartCurrentLimit(Setting.driveContinousCurrentLimit);
+    driveMotor.setIdleMode(Setting.driveNeutralMode);
+    driveEncoder.setVelocityConversionFactor(Setting.driveConversionVelocityFactor);
+    driveEncoder.setPositionConversionFactor(Setting.driveConversionPositionFactor);
+    driveController.setP(Setting.driveKP);
+    driveController.setI(Setting.driveKI);
+    driveController.setD(Setting.driveKD);
+    driveController.setFF(Setting.driveKFF);
+    driveMotor.enableVoltageCompensation(Setting.voltageComp);
     driveMotor.burnFlash();
     driveEncoder.setPosition(0.0);
     }
 private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
     if (isOpenLoop) {
-        double percentOutput = desiredState.speedMetersPerSecond / Setting.MAX_VELOCITY_METERS_PER_SECOND;
+        double percentOutput = desiredState.speedMetersPerSecond / Setting.maxVelocityMetersPerSecond;
         driveMotor.set(percentOutput);
     } else {
         driveController.setReference(
@@ -130,7 +130,7 @@ private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
 private void setAngle(SwerveModuleState desiredState) {
     // Prevent rotating module if speed is less then 1%. Prevents jittering.
     Rotation2d angle =
-        (Math.abs(desiredState.speedMetersPerSecond) <= (Setting.MAX_VELOCITY_METERS_PER_SECOND * 0.01))
+        (Math.abs(desiredState.speedMetersPerSecond) <= (Setting.maxVelocityMetersPerSecond * 0.01))
             ? lastAngle
             : desiredState.angle;
 

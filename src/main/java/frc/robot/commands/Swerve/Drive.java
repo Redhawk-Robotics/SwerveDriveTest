@@ -72,8 +72,8 @@ public class Drive extends CommandBase {
 
   /* Drive */
   Swerve.drive(
-      new Translation2d(translationVal, strafeVal).times(Setting.MAX_VELOCITY_METERS_PER_SECOND),
-      rotationVal * Setting.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
+      new Translation2d(translationVal, strafeVal).times(Setting.maxVelocityMetersPerSecond),
+      rotationVal * Setting.maxAngularVelocityRadiansPerSecond,
       !robotCentricSup.getAsBoolean(),
       true);
   }

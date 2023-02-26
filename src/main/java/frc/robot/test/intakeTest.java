@@ -21,8 +21,8 @@ public class intakeTest extends SubsystemBase {
   /** Creates a new intakeTest. */
   public intakeTest() {
     this.compressor = CompressorModule.getCompressorModule();
-    this.leftSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, Setting.intakePneumatic.leftForwardChan, Setting.intakePneumatic.leftReverseChan);
-    this.rightSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, Setting.intakePneumatic.leftForwardChan, Setting.intakePneumatic.leftForwardChan);
+    this.leftSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, Setting.intakePneumatics.leftForwardChan, Setting.intakePneumatics.leftReverseChan);
+    this.rightSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, Setting.intakePneumatics.leftForwardChan, Setting.intakePneumatics.leftForwardChan);
   }
 
   @Override

@@ -21,7 +21,7 @@ public class CompressorModule {
     }
 
     public void enableAnalog() {
-        compressor.enableAnalog(Setting.intakePneumatic.minPressure, Setting.intakePneumatic.maxPressure);
+        compressor.enableAnalog(Setting.intakePneumatics.minPressure, Setting.intakePneumatics.maxPressure);
     }
 
     public boolean isEnabled() {

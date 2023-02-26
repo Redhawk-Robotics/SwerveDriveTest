@@ -37,9 +37,9 @@ public class armTest extends SubsystemBase {
     //armAngleController = leftArmMotor.getPIDController();
     armAngleController = rightArmMotor.getPIDController();//TODO not sure if we need one or two PID controllers
 
-    configArmMotor(leftArmMotor,leftArmEncoder,armAngleController,true);
+    configArmMotor(leftArmMotor,leftArmEncoder,armAngleController,Setting.ArmSetting.leftArmMotorInvert);
 
-    configArmMotor(rightArmMotor,rightArmEncoder,armAngleController,false);
+    configArmMotor(rightArmMotor,rightArmEncoder,armAngleController,Setting.ArmSetting.rightArmMotorInvert);
 
   }
 
