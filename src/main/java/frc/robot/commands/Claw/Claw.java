@@ -13,6 +13,7 @@ public class Claw extends CommandBase {
   private clawTest claw;
   private CompressorModule compressor;
   
+  // FINISH the stuff here
   public Claw(clawTest claw) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.claw = claw;
