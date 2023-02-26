@@ -5,20 +5,28 @@
 package frc.robot.commands.test;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.test.armTest;
 
 public class ArmTesterCommand extends CommandBase {
   /** Creates a new Arm. */
-  public ArmTesterCommand() {
+  private armTest arm;
+  public ArmTesterCommand(armTest arm) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.arm = arm;
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    arm.resetEncoder();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override

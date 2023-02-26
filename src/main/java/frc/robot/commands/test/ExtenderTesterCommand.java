@@ -5,11 +5,15 @@
 package frc.robot.commands.test;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.test.extenderTest;
 
 public class ExtenderTesterCommand extends CommandBase {
   /** Creates a new Extender. */
-  public ExtenderTesterCommand() {
+  private extenderTest extender;
+  public ExtenderTesterCommand(extenderTest extender) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.extender = extender;
+    addRequirements(extender);
   }
 
   // Called when the command is initially scheduled.

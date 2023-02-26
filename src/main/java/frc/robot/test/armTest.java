@@ -78,5 +78,9 @@ public class armTest extends SubsystemBase {
     positionRight = rightArmEncoder.getPosition() * Setting.ArmSetting.kEncoderTick2Meter;
     return positionRight;
   }
+  public void resetEncoder(){
+    leftArmEncoder.setPosition(0);
+    rightArmEncoder.setPosition(0);
+  }
   
 }
