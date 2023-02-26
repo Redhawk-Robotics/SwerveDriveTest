@@ -6,11 +6,9 @@ package frc.robot;
 
 import frc.robot.commands.Swerve.Drive;
 import frc.robot.constants.Ports;
-import frc.robot.subsystems.GyroSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.test.armTest;
 import frc.robot.test.intakeTest;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,7 +33,6 @@ public class RobotContainer {
 
   /* Subsystems */
   private final SwerveSubsystem SwerveDrive = new SwerveSubsystem();
-  private final GyroSubsystem gyro = new GyroSubsystem();
   private final armTest arm = new armTest();
   private final intakeTest intake = new intakeTest();
 
@@ -123,7 +120,7 @@ public class RobotContainer {
 
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
-    tester.onTrue(new InstantCommand(() -> intake.intakeDown()));
+    tester.whileTrue(new InstantCommand(() -> intake.intakeDown()));
 
     // System.out.print("Swervy");
 

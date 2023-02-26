@@ -5,15 +5,18 @@
 package frc.robot.commands.Claw;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.modules.CompressorModule;
 import frc.robot.test.clawTest;
 
 public class Claw extends CommandBase {
   /** Creates a new Claw. */
   private clawTest claw;
+  private CompressorModule compressor;
   
   public Claw(clawTest claw) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.claw = claw;
+    this.compressor = CompressorModule.getCompressorModule();
     addRequirements(claw);
   }
 
@@ -23,7 +26,13 @@ public class Claw extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    this.compressor.enableAnalog();
+    this.claw.stopMotors();
+  }
+
+  // ADD TRIGGERS FOR BUTTON
+  // WHEN PRESSED OPEN CLAW AND MOVE THE MOTORS
 
   // Called once the command ends or is interrupted.
   @Override

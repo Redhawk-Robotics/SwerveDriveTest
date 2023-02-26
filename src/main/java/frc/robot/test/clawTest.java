@@ -4,6 +4,7 @@
 
 package frc.robot.test;
 
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
@@ -29,8 +30,8 @@ public class clawTest extends SubsystemBase {
     leftPIDController = leftNeo550.getPIDController();
     rightPIDController = rightNeo550.getPIDController();
 
-    configClawMotor(leftNeo550, leftEncoder, leftPIDController);
-    configClawMotor(rightNeo550, righEncoder, rightPIDController);
+    configClawMotor(leftNeo550, leftEncoder, leftPIDController, true);
+    configClawMotor(rightNeo550, righEncoder, rightPIDController, false);
   }
 
   @Override
@@ -38,11 +39,22 @@ public class clawTest extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void configClawMotor(CANSparkMax clawMotor, RelativeEncoder clawEncoder, SparkMaxPIDController clawController) {
+  public void runMotors() {
+    leftNeo550.set(.5);
+    rightNeo550.set(.5);
+  }
+
+  public void stopMotors() {
+    leftNeo550.set(0);
+    rightNeo550.set(0);
+  }
+
+  public void configClawMotor(CANSparkMax clawMotor, RelativeEncoder clawEncoder, SparkMaxPIDController clawController, boolean invert) {
     clawMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(null, Usage.kAll);
     clawMotor.setSmartCurrentLimit(0);
     clawMotor.setIdleMode(null);
+    clawMotor.setInverted(invert);
     clawEncoder.setVelocityConversionFactor(0);
     clawEncoder.setPositionConversionFactor(0);
     clawController.setP(0);
@@ -51,6 +63,5 @@ public class clawTest extends SubsystemBase {
     clawController.setFF(0);
     clawMotor.enableVoltageCompensation(0);
     clawMotor.burnFlash();
-    clawEncoder.setPosition(0.0);
   }
 }

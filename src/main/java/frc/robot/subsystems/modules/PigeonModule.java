@@ -31,4 +31,8 @@ public class PigeonModule {
     public double getYaw() {
         return this.m_Pigeon.getYaw();
     }
+
+    public double getAnglePerpendicularToGroundDEG() {
+        return this.m_Pigeon.getYaw();
+    }
 }

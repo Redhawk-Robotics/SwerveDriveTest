@@ -55,6 +55,7 @@ public interface Setting {
     public static final double DRIVE_KS = 0.0;//FIXME
     public static final double DRIVE_KV = 0.0;//FIXME Volt-seconds per meter (max voltage divided by max speed) 12/MAX SPEED
     public static final double DRIVE_KA = 0.0;//FIXME Volt-seconds^2 per meter (max voltage divided by max accel) 12/max acceleration
+    
 
 
     /** SDS MK4i l1 - 8.14 : 1 */       
@@ -121,8 +122,18 @@ public interface Setting {
     );
     
     public static final class ArmSetting{
-    public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
-   }
+        public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
+    }
+    public static final class intakePneumatic {
+        public static final int leftForwardChan = 0;
+        public static final int leftReverseChan = 1;
+
+        public static final int rightForwardChan = 2;
+        public static final int rightReverseChan = 3;
+
+        public static final int minPressure = 0;
+        public static final int maxPressure = 120;
+    }
     public static final class AutoConstants {
 
     }

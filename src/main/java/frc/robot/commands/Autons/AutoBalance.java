@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.constants.Setting;
-import frc.robot.subsystems.GyroSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.modules.PigeonModule;
 
 public class AutoBalance extends CommandBase {
   /** Creates a new AutoBalance. */
 
-  private GyroSubsystem m_Gyro;
+  private PigeonModule m_Gyro;
   private SwerveSubsystem s_Swerve;
   private Timer time;
   private double prevTime = 0;
@@ -29,11 +29,11 @@ public class AutoBalance extends CommandBase {
   private double Ki = 0;
   private double Kd = 0;
 
-  public AutoBalance(SwerveSubsystem s_Swerve, GyroSubsystem m_Gyro) {
+  public AutoBalance(SwerveSubsystem s_Swerve, PigeonModule m_Gyro) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.s_Swerve = s_Swerve;
     this.m_Gyro = m_Gyro;
-    addRequirements(s_Swerve, m_Gyro);
+    addRequirements(s_Swerve);
 
     time = new Timer();
   }
