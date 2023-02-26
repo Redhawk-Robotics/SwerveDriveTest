@@ -8,6 +8,7 @@ import frc.robot.commands.Swerve.Drive;
 import frc.robot.constants.Ports;
 import frc.robot.subsystems.GyroSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.test.intakeTest;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -34,6 +35,7 @@ public class RobotContainer {
   /* Subsystems */
   private final SwerveSubsystem SwerveDrive = new SwerveSubsystem();
   private final GyroSubsystem gyro = new GyroSubsystem();
+  private final intakeTest intake = new intakeTest();
 
   /* Commands */
 
@@ -57,7 +59,7 @@ public class RobotContainer {
   // Additional buttons
   private final Trigger highGrid = new JoystickButton(DRIVER, XboxController.Button.kLeftBumper.value);
 
-  private final Trigger Tester = new JoystickButton(DRIVER, XboxController.Button.kB.value);
+  private final Trigger tester = new JoystickButton(DRIVER, XboxController.Button.kB.value);
 
   // TODO May need to switch the object for each button to JoystickButton
   // Create SmartDashboard chooser for autonomous routines
@@ -119,6 +121,7 @@ public class RobotContainer {
 
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
+    tester.onTrue(new InstantCommand(() -> intake.intakeDown()));
 
     // System.out.print("Swervy");
 

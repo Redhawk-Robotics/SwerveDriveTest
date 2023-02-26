@@ -63,7 +63,7 @@ public class AutoBalance extends CommandBase {
 
     // TODO fix MAX_VELOCITY_METERS_PER_SECOND (bros going too fast)
      // Assume 15* tilt means MAX transliation
-    double strafeVal = (Setting.MAX_VELOCITY_METERS_PER_SECOND / chargePadTiltDEG) * output;
+    double strafeVal = (Setting.MAX_VELOCITY_METERS_PER_SECOND / chargePadTiltDEG) * output; // FIXME
     System.out.println("strafeVal: " + strafeVal);
 
     // Might need to clamp the transilation values
