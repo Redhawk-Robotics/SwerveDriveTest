@@ -6,9 +6,9 @@ package frc.robot.test;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class spindexerTest extends SubsystemBase {
-  /** Creates a new spindexerTest. */
-  public spindexerTest() {}
+public class extenderTest extends SubsystemBase {
+  /** Creates a new extenderTest. */
+  public extenderTest() {}
 
   @Override
   public void periodic() {
