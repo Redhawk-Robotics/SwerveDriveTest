@@ -8,6 +8,7 @@ import frc.robot.commands.Swerve.Drive;
 import frc.robot.constants.Ports;
 import frc.robot.subsystems.GyroSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.test.armTest;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -34,6 +35,7 @@ public class RobotContainer {
   /* Subsystems */
   private final SwerveSubsystem SwerveDrive = new SwerveSubsystem();
   private final GyroSubsystem gyro = new GyroSubsystem();
+  private final armTest arm = new armTest();
 
   /* Commands */
 

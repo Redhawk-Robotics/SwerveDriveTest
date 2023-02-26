@@ -119,7 +119,10 @@ public interface Setting {
         // Back right
         new Translation2d(-DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -DRIVETRAIN_WHEELBASE_METERS / 2.0)
     );
-   
+    
+    public static final class ArmSetting{
+    public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
+   }
     public static final class AutoConstants {
 
     }
