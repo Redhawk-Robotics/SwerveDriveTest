@@ -16,6 +16,10 @@ public class GyroSubsystem extends SubsystemBase {
     this.pigeonModule = PigeonModule.getPigeonModule();
   }
 
+  public double getPitch() {
+    return this.pigeonModule.getPitch();
+  }
+
   public void setYaw(double yaw) {
     this.pigeonModule.setYaw(yaw);
   }
@@ -26,7 +30,7 @@ public class GyroSubsystem extends SubsystemBase {
 
   // Going to change, TODO TESTS
   public double getAnglePerpendicularToGroundDEG() {
-    return this.pigeonModule.getYaw();
+    return this.pigeonModule.getPitch();
   }
 
   @Override

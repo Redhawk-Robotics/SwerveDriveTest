@@ -20,6 +20,10 @@ public class PigeonModule {
         return singleton;
     }
 
+    public double getPitch() {
+        return this.m_Pigeon.getPitch();
+    }
+
     public void setYaw(double yaw) {
         this.m_Pigeon.setYaw(yaw);
     }

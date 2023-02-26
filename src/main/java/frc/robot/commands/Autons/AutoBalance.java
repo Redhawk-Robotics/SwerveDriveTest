@@ -41,10 +41,9 @@ public class AutoBalance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    this.m_Gyro.setYaw(0);
     time.reset();
-    System.out.println(this.m_Gyro.getYaw());
-    SmartDashboard.getNumber("Yaw", this.m_Gyro.getYaw());
+    System.out.println(this.m_Gyro.getPitch());
+    SmartDashboard.getNumber("Pitch", this.m_Gyro.getPitch());
     isFinishedBool = false;
     time.start();
   }
