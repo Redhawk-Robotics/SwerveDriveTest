@@ -4,13 +4,6 @@
 
 package frc.robot.test;
 
-<<<<<<< HEAD
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-public class intakeTest extends SubsystemBase {
-  /** Creates a new intakeTest. */
-  public intakeTest() {}
-=======
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -29,14 +22,10 @@ public class intakeTest extends SubsystemBase {
     this.leftSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
     this.rightSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
   }
->>>>>>> ce286731a215fa5a442bd376e4d2c7d6fafb25f2
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-<<<<<<< HEAD
-  }
-=======
     compressor.enableAnalog(0, 120);
     leftSolenoid.set(kReverse);
     rightSolenoid.set(kReverse);
@@ -46,5 +35,4 @@ public class intakeTest extends SubsystemBase {
       leftSolenoid.set(kForward);
       rightSolenoid.set(kForward);
     }
->>>>>>> ce286731a215fa5a442bd376e4d2c7d6fafb25f2
 }
