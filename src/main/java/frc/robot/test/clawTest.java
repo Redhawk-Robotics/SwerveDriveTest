@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Ports;
+import frc.robot.constants.Setting;
 import frc.robot.lib.util.CANSparkMaxUtil;
 import frc.robot.lib.util.CANSparkMaxUtil.Usage;
 
@@ -29,8 +30,8 @@ public class clawTest extends SubsystemBase {
     leftPIDController = leftNeo550.getPIDController();
     rightPIDController = rightNeo550.getPIDController();
 
-    configClawMotor(leftNeo550, leftEncoder, leftPIDController, true);
-    configClawMotor(rightNeo550, righEncoder, rightPIDController, false);
+    configClawMotor(leftNeo550, leftEncoder, leftPIDController, Setting.ClawSetting.leftClawMotorInvert);
+    configClawMotor(rightNeo550, righEncoder, rightPIDController, Setting.ClawSetting.rightClawMotorInvert);
   }
 
   @Override
@@ -50,17 +51,17 @@ public class clawTest extends SubsystemBase {
 
   public void configClawMotor(CANSparkMax clawMotor, RelativeEncoder clawEncoder, SparkMaxPIDController clawController, boolean invert) {
     clawMotor.restoreFactoryDefaults();
-    CANSparkMaxUtil.setCANSparkMaxBusUsage(null, Usage.kAll);
-    clawMotor.setSmartCurrentLimit(0);
-    clawMotor.setIdleMode(null);
+    CANSparkMaxUtil.setCANSparkMaxBusUsage(clawMotor, Usage.kAll);
+    clawMotor.setSmartCurrentLimit(Setting.ClawSetting.clawContinousCurrentLimit);
+    clawMotor.setIdleMode(Setting.ClawSetting.clawNeutralMode);
     clawMotor.setInverted(invert);
-    clawEncoder.setVelocityConversionFactor(0);
-    clawEncoder.setPositionConversionFactor(0);
-    clawController.setP(0);
-    clawController.setI(0);
-    clawController.setD(0);
-    clawController.setFF(0);
-    clawMotor.enableVoltageCompensation(0);
+    clawEncoder.setVelocityConversionFactor(Setting.ClawSetting.clawConversionVelocityFactor);
+    clawEncoder.setPositionConversionFactor(Setting.ClawSetting.clawConversionPositionFactor);
+    clawController.setP(Setting.ClawSetting.clawP);
+    clawController.setI(Setting.ClawSetting.clawI);
+    clawController.setD(Setting.ClawSetting.clawD);
+    clawController.setFF(Setting.ClawSetting.clawFF);
+    clawMotor.enableVoltageCompensation(Setting.ClawSetting.maxVoltage);
     clawMotor.burnFlash();
   }
 }

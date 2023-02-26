@@ -39,14 +39,14 @@ public class SwerveSubsystem extends SubsystemBase {
     zeroGyro();
 
     SwerveMods = new SwerveModule[] {
-        new SwerveModule(0, Ports.FRONT_LEFT_MODULE0.constants),
-        new SwerveModule(1, Ports.FRONT_RIGHT_MODULE1.constants),
-        new SwerveModule(2, Ports.BACK_LEFT_MODULE2.constants),
-        new SwerveModule(3, Ports.BACK_RIGHT_MODULE3.constants)
+        new SwerveModule(0, Ports.frontLeftModule0.constants),
+        new SwerveModule(1, Ports.frontRightModule1.constants),
+        new SwerveModule(2, Ports.backLeftModule2.constants),
+        new SwerveModule(3, Ports.backRightModule3.constants)
     };
 
-    swerveOdometry = new SwerveDriveOdometry(Setting.M_KINEMATICS, getYaw(), getPositions());
-    poseEstimator = new SwerveDrivePoseEstimator(Setting.M_KINEMATICS, getYaw(),
+    swerveOdometry = new SwerveDriveOdometry(Setting.mKinematics, getYaw(), getPositions());
+    poseEstimator = new SwerveDrivePoseEstimator(Setting.mKinematics, getYaw(),
         getPositions(), new Pose2d());
 
     field = new Field2d();
@@ -55,13 +55,13 @@ public class SwerveSubsystem extends SubsystemBase {
 
   public void drive(
       Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
-    SwerveModuleState[] swerveModuleStates = Setting.M_KINEMATICS.toSwerveModuleStates(
+    SwerveModuleState[] swerveModuleStates = Setting.mKinematics.toSwerveModuleStates(
         fieldRelative
             ? ChassisSpeeds.fromFieldRelativeSpeeds(
                 translation.getX(), translation.getY(), rotation, getYaw())
             : new ChassisSpeeds(translation.getX(), translation.getY(), rotation));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates,
-        Setting.MAX_VELOCITY_METERS_PER_SECOND);
+        Setting.maxVelocityMetersPerSecond);
 
     for (SwerveModule mod : SwerveMods) {
       mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
@@ -70,7 +70,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
   /* Used by SwerveControllerCommand in Auto */
   public void setModuleStates(SwerveModuleState[] desiredStates) {
-    SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Setting.MAX_VELOCITY_METERS_PER_SECOND);
+    SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Setting.maxVelocityMetersPerSecond);
 
     for (SwerveModule mod : SwerveMods) {
       mod.setDesiredState(desiredStates[mod.moduleNumber], false); // false
