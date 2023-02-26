@@ -120,10 +120,6 @@ public interface Setting {
         // Back right
         new Translation2d(-DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -DRIVETRAIN_WHEELBASE_METERS / 2.0)
     );
-    
-    public static final class ArmSetting{
-        public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
-    }
     public static final class intakePneumatic {
         public static final int leftForwardChan = 0;
         public static final int leftReverseChan = 1;
@@ -134,6 +130,24 @@ public interface Setting {
         public static final int minPressure = 0;
         public static final int maxPressure = 120;
     }
+    public static final class ArmSetting{
+    public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
+
+    public static final double armP = 0;
+    public static final double armI = 0;
+    public static final double armD = 0;
+    public static final double armFF = 0;
+    public static final double maxVoltage = 0;
+    public static final double armConversionFactor = 0;//FIXME need to find the conversion Factor
+    
+    public static final int armContinousCurrentLimit = 40; 
+
+    public static final IdleMode armNeutralMode = IdleMode.kBrake;
+
+    public static final boolean leftArmMotorInvert = true;
+    public static final boolean rightArmMotorInvert = false;
+
+   }
     public static final class AutoConstants {
 
     }

@@ -9,6 +9,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Ports;
@@ -22,59 +23,48 @@ public class armTest extends SubsystemBase {
   private final RelativeEncoder leftArmEncoder, rightArmEncoder;
 
   private final SparkMaxPIDController armAngleController;
-  private double leftArmencoderValue;
-  private double rightArmencoderValue;
+  private double leftArmEncoderValue;
+  private double rightArmEncoderValue;
 
 
   public armTest() {
     leftArmMotor = new CANSparkMax(Ports.arm.leftArm, MotorType.kBrushless);
     leftArmEncoder = leftArmMotor.getEncoder();  
-    configLeftArmMotor();
 
     rightArmMotor = new CANSparkMax(Ports.arm.rightArm, MotorType.kBrushless);
     rightArmEncoder = rightArmMotor.getEncoder();  
-    configRightArmMotor();
+
     //armAngleController = leftArmMotor.getPIDController();
-    armAngleController = rightArmMotor.getPIDController();///TODO not sure if we need one or two PID controllers
-    
+    armAngleController = rightArmMotor.getPIDController();//TODO not sure if we need one or two PID controllers
+
+    configArmMotor(leftArmMotor,leftArmEncoder,armAngleController,true);
+
+    configArmMotor(rightArmMotor,rightArmEncoder,armAngleController,false);
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("RightArm encoder value", getEncoderMetersLeft(leftArmencoderValue));
-    SmartDashboard.putNumber("LeftArm encoder value", getEncoderMetersRight(rightArmencoderValue));
+    SmartDashboard.putNumber("RightArm Encoder Value", getEncoderMetersLeft(leftArmEncoderValue));
+    SmartDashboard.putNumber("LeftArm Encoder Value", getEncoderMetersRight(rightArmEncoderValue));
   }
-  private void configLeftArmMotor() {
-    leftArmMotor.restoreFactoryDefaults();
-    CANSparkMaxUtil.setCANSparkMaxBusUsage(null, Usage.kPositionOnly);
-    leftArmMotor.setSmartCurrentLimit(0);
-    leftArmMotor.setIdleMode(null);
-    leftArmEncoder.setVelocityConversionFactor(0);
-    leftArmEncoder.setPositionConversionFactor(0);
-    armAngleController.setP(0);
-    armAngleController.setI(0);
-    armAngleController.setD(0);
-    armAngleController.setFF(0);
-    leftArmMotor.enableVoltageCompensation(0.0);
-    leftArmMotor.burnFlash();
-    leftArmEncoder.setPosition(0.0);
+  private void configArmMotor(CANSparkMax ArmMotor, RelativeEncoder ArmEncoder, SparkMaxPIDController armAngleController, boolean Invert) {
+    ArmMotor.restoreFactoryDefaults();
+    CANSparkMaxUtil.setCANSparkMaxBusUsage(ArmMotor, Usage.kPositionOnly);
+    ArmMotor.setSmartCurrentLimit(Setting.ArmSetting.armContinousCurrentLimit);
+    ArmMotor.setInverted(Invert);
+    ArmMotor.setIdleMode(Setting.ArmSetting.armNeutralMode);
+    ArmEncoder.setPositionConversionFactor(Setting.ArmSetting.armConversionFactor);
+    armAngleController.setP(Setting.ArmSetting.armP);
+    armAngleController.setI(Setting.ArmSetting.armI);
+    armAngleController.setD(Setting.ArmSetting.armD);
+    armAngleController.setFF(Setting.ArmSetting.armFF);
+    ArmMotor.enableVoltageCompensation(Setting.ArmSetting.maxVoltage);
+    ArmMotor.burnFlash();
+    Timer.delay(1);
+    //resetToAbsolute();//FIXME if we are adding a canCODER to the shaft of the arm
     }
-    private void configRightArmMotor() {
-      rightArmMotor.restoreFactoryDefaults();
-      CANSparkMaxUtil.setCANSparkMaxBusUsage(null, Usage.kPositionOnly);
-      rightArmMotor.setSmartCurrentLimit(0);
-      rightArmMotor.setIdleMode(null);
-      rightArmEncoder.setVelocityConversionFactor(0);
-      rightArmEncoder.setPositionConversionFactor(0);
-      armAngleController.setP(0);
-      armAngleController.setI(0);
-      armAngleController.setD(0);
-      armAngleController.setFF(0);
-      rightArmMotor.enableVoltageCompensation(0.0);
-      rightArmMotor.burnFlash();
-      rightArmEncoder.setPosition(0.0);
-      }
     public void setMotor(double speed) {
       leftArmMotor.set(speed);
       rightArmMotor.set(speed);
