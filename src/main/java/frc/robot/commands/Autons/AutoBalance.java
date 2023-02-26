@@ -23,7 +23,7 @@ public class AutoBalance extends CommandBase {
   private double prevError = 0;
   private double sumOfError = 0;
   private final double chargePadLengthMETERS = 4. / 3.281;
-  private final double chargePadTiltDEG = 15.;
+  private final double chargePadTiltDEG = 16.5;
   private boolean isFinishedBool = false;
   private double Kp = 1;
   private double Ki = 0;
@@ -63,12 +63,12 @@ public class AutoBalance extends CommandBase {
 
     // TODO fix MAX_VELOCITY_METERS_PER_SECOND (bros going too fast)
      // Assume 15* tilt means MAX transliation
-    double translationVal = (Setting.MAX_VELOCITY_METERS_PER_SECOND / chargePadTiltDEG) * output;
-    System.out.println("translationVal: " + translationVal);
+    double strafeVal = (Setting.MAX_VELOCITY_METERS_PER_SECOND / chargePadTiltDEG) * output;
+    System.out.println("strafeVal: " + strafeVal);
 
     // Might need to clamp the transilation values
     s_Swerve.drive(
-        new Translation2d(translationVal, 0),
+        new Translation2d(0, strafeVal),
         0,
         true,
         true);
