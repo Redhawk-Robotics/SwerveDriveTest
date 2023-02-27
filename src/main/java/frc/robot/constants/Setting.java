@@ -52,8 +52,6 @@ public interface Setting {
     public static final double driveKV = 0.0;//FIXME Volt-seconds per meter (max voltage divided by max speed) 12/MAX SPEED
     public static final double driveKA = 0.0;//FIXME Volt-seconds^2 per meter (max voltage divided by max accel) 12/max acceleration
     
-
-
     /** SDS MK4i l1 - 8.14 : 1 */       
     /** SDS MK4i l2 - 6.75 : 1 */
     /** SDS MK4i l3 - 6.12 : 1 */
@@ -105,7 +103,7 @@ public interface Setting {
         public static final int clawForwardChan = 4;
         public static final int clawReverseChan = 5; 
     }
-    public static final class ClawSetting{
+    public static final class clawSetting{
         public static final double clawP = 0;
         public static final double clawI = 0;
         public static final double clawD = 0;
@@ -118,12 +116,11 @@ public interface Setting {
 
         public static final IdleMode clawNeutralMode = IdleMode.kBrake;
 
-
         public static final boolean leftClawMotorInvert = true;
         public static final boolean rightClawMotorInvert = false;
     }
 
-    public static final class ArmSetting{
+    public static final class armSetting{
         public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
 
         public static final double armP = 0;
@@ -140,7 +137,7 @@ public interface Setting {
         public static final boolean leftArmMotorInvert = true;
         public static final boolean rightArmMotorInvert = false;
    }
-   public static final class ExtenderSetting{
+   public static final class extenderSetting{
         public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
 
         public static final double extenderP = 0;

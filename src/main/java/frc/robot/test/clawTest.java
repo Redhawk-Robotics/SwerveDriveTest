@@ -38,8 +38,8 @@ public class clawTest extends SubsystemBase {
     configClawMotor(rightNeo550, righEncoder, rightPIDController, false);
 
     clawSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, Setting.clawPneumatic.clawForwardChan, Setting.clawPneumatic.clawReverseChan);
-    configClawMotor(leftNeo550, leftEncoder, leftPIDController, Setting.ClawSetting.leftClawMotorInvert);
-    configClawMotor(rightNeo550, righEncoder, rightPIDController, Setting.ClawSetting.rightClawMotorInvert);
+    configClawMotor(leftNeo550, leftEncoder, leftPIDController, Setting.clawSetting.leftClawMotorInvert);
+    configClawMotor(rightNeo550, righEncoder, rightPIDController, Setting.clawSetting.rightClawMotorInvert);
   }
 
   @Override
@@ -69,16 +69,16 @@ public class clawTest extends SubsystemBase {
   public void configClawMotor(CANSparkMax clawMotor, RelativeEncoder clawEncoder, SparkMaxPIDController clawController, boolean invert) {
     clawMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(clawMotor, Usage.kAll);
-    clawMotor.setSmartCurrentLimit(Setting.ClawSetting.clawContinousCurrentLimit);
-    clawMotor.setIdleMode(Setting.ClawSetting.clawNeutralMode);
+    clawMotor.setSmartCurrentLimit(Setting.clawSetting.clawContinousCurrentLimit);
+    clawMotor.setIdleMode(Setting.clawSetting.clawNeutralMode);
     clawMotor.setInverted(invert);
-    clawEncoder.setVelocityConversionFactor(Setting.ClawSetting.clawConversionVelocityFactor);
-    clawEncoder.setPositionConversionFactor(Setting.ClawSetting.clawConversionPositionFactor);
-    clawController.setP(Setting.ClawSetting.clawP);
-    clawController.setI(Setting.ClawSetting.clawI);
-    clawController.setD(Setting.ClawSetting.clawD);
-    clawController.setFF(Setting.ClawSetting.clawFF);
-    clawMotor.enableVoltageCompensation(Setting.ClawSetting.maxVoltage);
+    clawEncoder.setVelocityConversionFactor(Setting.clawSetting.clawConversionVelocityFactor);
+    clawEncoder.setPositionConversionFactor(Setting.clawSetting.clawConversionPositionFactor);
+    clawController.setP(Setting.clawSetting.clawP);
+    clawController.setI(Setting.clawSetting.clawI);
+    clawController.setD(Setting.clawSetting.clawD);
+    clawController.setFF(Setting.clawSetting.clawFF);
+    clawMotor.enableVoltageCompensation(Setting.clawSetting.maxVoltage);
     clawMotor.burnFlash();
   }
 }

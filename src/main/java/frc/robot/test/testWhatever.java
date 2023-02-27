@@ -33,7 +33,7 @@ testEncoder = testMotor.getEncoder();
     testMotor.set(speed);
  } 
   public double getEncoderMeters(double positionLeft) {
-    positionLeft = testEncoder.getPosition() * Setting.ArmSetting.kEncoderTick2Meter;
+    positionLeft = testEncoder.getPosition() * Setting.armSetting.kEncoderTick2Meter;
     return positionLeft;
   }
 }

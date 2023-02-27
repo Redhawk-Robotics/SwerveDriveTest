@@ -32,7 +32,7 @@ public class extenderTest extends SubsystemBase {
 
     extenderController = extenderMotor.getPIDController();
 
-    configArmMotor(extenderMotor,extenderEncoder,extenderController,Setting.ExtenderSetting.ExtenderMotorInvert);
+    configArmMotor(extenderMotor,extenderEncoder,extenderController,Setting.extenderSetting.ExtenderMotorInvert);
 
   }
 
@@ -44,15 +44,15 @@ public class extenderTest extends SubsystemBase {
   private void configArmMotor(CANSparkMax extenderMotor, RelativeEncoder extenderEncoder, SparkMaxPIDController extenderController, boolean Invert) {
     extenderMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(extenderMotor, Usage.kPositionOnly);
-    extenderMotor.setSmartCurrentLimit(Setting.ExtenderSetting.extenderContinousCurrentLimit);
+    extenderMotor.setSmartCurrentLimit(Setting.extenderSetting.extenderContinousCurrentLimit);
     extenderMotor.setInverted(Invert);
-    extenderMotor.setIdleMode(Setting.ExtenderSetting.extenderNeutralMode);
-    extenderEncoder.setPositionConversionFactor(Setting.ExtenderSetting.extenderConversionFactor);
-    extenderController.setP(Setting.ExtenderSetting.extenderP);
-    extenderController.setI(Setting.ExtenderSetting.extenderI);
-    extenderController.setD(Setting.ExtenderSetting.extenderD);
-    extenderController.setFF(Setting.ExtenderSetting.extenderFF);
-    extenderMotor.enableVoltageCompensation(Setting.ExtenderSetting.maxVoltage);
+    extenderMotor.setIdleMode(Setting.extenderSetting.extenderNeutralMode);
+    extenderEncoder.setPositionConversionFactor(Setting.extenderSetting.extenderConversionFactor);
+    extenderController.setP(Setting.extenderSetting.extenderP);
+    extenderController.setI(Setting.extenderSetting.extenderI);
+    extenderController.setD(Setting.extenderSetting.extenderD);
+    extenderController.setFF(Setting.extenderSetting.extenderFF);
+    extenderMotor.enableVoltageCompensation(Setting.extenderSetting.maxVoltage);
     extenderMotor.burnFlash();
     Timer.delay(1);
     //resetToAbsolute();//FIXME if we are adding a canCODER to the shaft of the arm
@@ -62,7 +62,7 @@ public class extenderTest extends SubsystemBase {
   }
 
   public double getEncoderMetersLeft(double position) {
-    position = extenderEncoder.getPosition() * Setting.ExtenderSetting.kEncoderTick2Meter;
+    position = extenderEncoder.getPosition() * Setting.extenderSetting.kEncoderTick2Meter;
     return position;
   }
 }
