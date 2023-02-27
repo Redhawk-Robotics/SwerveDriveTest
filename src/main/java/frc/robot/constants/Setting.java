@@ -101,6 +101,10 @@ public interface Setting {
         public static final int minPressure = 0;
         public static final int maxPressure = 120;
     }
+    public static final class clawPneumatic {
+        public static final int clawForwardChan = 4;
+        public static final int clawReverseChan = 5; 
+    }
     public static final class ClawSetting{
         public static final double clawP = 0;
         public static final double clawI = 0;
