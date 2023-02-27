@@ -33,8 +33,8 @@ public class RobotContainer {
 
   /* Subsystems */
   private final SwerveSubsystem SwerveDrive = new SwerveSubsystem();
-  private final armTest arm = new armTest();
-  private final intakeTest intake = new intakeTest();
+  //private final armTest arm = new armTest();
+  //private final intakeTest intake = new intakeTest();
 
   /* Commands */
 
@@ -120,7 +120,7 @@ public class RobotContainer {
 
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
-    tester.whileTrue(new InstantCommand(() -> intake.intakeDown()));
+    //tester.whileTrue(new InstantCommand(() -> intake.intakeDown()));
 
     // System.out.print("Swervy");
 
