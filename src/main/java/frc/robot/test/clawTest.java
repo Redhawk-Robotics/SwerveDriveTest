@@ -9,8 +9,12 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Ports;
+import frc.robot.constants.Setting;
 import frc.robot.lib.util.CANSparkMaxUtil;
 import frc.robot.lib.util.CANSparkMaxUtil.Usage;
 
@@ -19,6 +23,7 @@ public class clawTest extends SubsystemBase {
   private final CANSparkMax leftNeo550, rightNeo550;
   private final RelativeEncoder leftEncoder, righEncoder;
   private final SparkMaxPIDController leftPIDController, rightPIDController; 
+  private final DoubleSolenoid clawSolenoid;
 
   /** Creates a new clawTest. */
   public clawTest() {
@@ -31,6 +36,8 @@ public class clawTest extends SubsystemBase {
 
     configClawMotor(leftNeo550, leftEncoder, leftPIDController, true);
     configClawMotor(rightNeo550, righEncoder, rightPIDController, false);
+
+    clawSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, Setting.clawPneumatic.clawForwardChan, Setting.clawPneumatic.clawReverseChan);
   }
 
   @Override
@@ -47,6 +54,15 @@ public class clawTest extends SubsystemBase {
     leftNeo550.set(0);
     rightNeo550.set(0);
   }
+
+  public void closeClaw() {
+    clawSolenoid.set(kForward);
+  }
+
+  public void openClaw() {
+    clawSolenoid.set(kReverse);
+  }
+
 
   public void configClawMotor(CANSparkMax clawMotor, RelativeEncoder clawEncoder, SparkMaxPIDController clawController, boolean invert) {
     clawMotor.restoreFactoryDefaults();

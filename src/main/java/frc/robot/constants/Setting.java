@@ -130,6 +130,10 @@ public interface Setting {
         public static final int minPressure = 0;
         public static final int maxPressure = 120;
     }
+    public static final class clawPneumatic {
+        public static final int clawForwardChan = 4;
+        public static final int clawReverseChan = 5; 
+    }
     public static final class ArmSetting{
     public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
 

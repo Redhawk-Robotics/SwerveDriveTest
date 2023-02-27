@@ -30,6 +30,7 @@ public class Claw extends CommandBase {
   public void execute() {
     this.compressor.enableAnalog();
     this.claw.stopMotors();
+    this.claw.closeClaw();
   }
 
   // ADD TRIGGERS FOR BUTTON
