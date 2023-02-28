@@ -20,8 +20,8 @@ public class CompressorModule {
         return singleton;
     }
 
-    public void enableAnalog() {
-        compressor.enableAnalog(Setting.intakePneumatics.minPressure, Setting.intakePneumatics.maxPressure);
+    public void enableAnalog(double min, double max) {
+        compressor.enableAnalog(min, max);
     }
 
     public boolean isEnabled() {
@@ -30,5 +30,15 @@ public class CompressorModule {
 
     public double getPressure() {
         return compressor.getPressure();
+    }
+
+    public void setPressureAnalog(double pressure) {
+        if (pressure == 220) {
+            compressor.disable();
+        } else if (pressure >= 60) {
+            enableAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
+        } else {
+            enableAnalog(Setting.compressor.relativeMinPressure,Setting.compressor.absoluteMaxPressure);
+        }
     }
 }
