@@ -5,6 +5,7 @@
 package frc.robot.commands.test;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.constants.Setting;
 import frc.robot.subsystems.modules.CompressorModule;
 import frc.robot.test.clawTest;
 
@@ -27,7 +28,7 @@ public class ClawTesterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.compressor.enableAnalog();
+    this.compressor.enableAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
     this.claw.stopMotors();
   }
 

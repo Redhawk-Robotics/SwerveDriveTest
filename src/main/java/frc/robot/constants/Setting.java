@@ -95,9 +95,12 @@ public interface Setting {
 
         public static final int rightForwardChan = 2;
         public static final int rightReverseChan = 3;
+    }
+    public static final class compressor {
+        public static final int absoluteMinPressure = 0;
+        public static final int absoluteMaxPressure = 120;
 
-        public static final int minPressure = 0;
-        public static final int maxPressure = 120;
+        public static final int relativeMinPressure = 60;
     }
     public static final class clawPneumatic {
         public static final int clawForwardChan = 4;
