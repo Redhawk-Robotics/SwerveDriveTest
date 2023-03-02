@@ -27,7 +27,7 @@ testEncoder = testMotor.getEncoder();
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("testMotor Encoder Value", getEncoderMeters(EncoderValue));
+    //SmartDashboard.putNumber("testMotor Encoder Value", getEncoderMeters(EncoderValue));
   }
   public void setMotor(double speed) {
     testMotor.set(speed);

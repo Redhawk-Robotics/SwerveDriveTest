@@ -23,6 +23,23 @@ import frc.robot.lib.util.CANCoderUtil.CCUsage;
 import frc.robot.lib.util.CANSparkMaxUtil.Usage;
 
 public class SwerveModule {
+/**
+ * @param moduleNumber The # of the swerveDrive modules
+ * 
+ * @param angleOffset The offset of the swerveDrive modules
+ * @param lastAngle In degrees, the last angle that was inputted within the code 
+ * 
+ * @param driveMotor Sparkmax motor for drive
+ * @param angleMotor Sparkmax motor for the Angle
+ * 
+ * @param driveEncoder Encoder of the driveMotor
+ * @param integratedAngleEncoder Encoder of the AngleMotor
+ * 
+ * @param angleEncoder CanCoder for angleMotor desired Location
+ * 
+ * @param driveController PID for the Drive Motor speed
+ * @param angleController PID for the Optimal angle for the angleMotor
+ */
 public int moduleNumber;
 
 public Rotation2d angleOffset;
@@ -39,9 +56,11 @@ private final CANCoder angleEncoder;
 private final SparkMaxPIDController driveController;
 private final SparkMaxPIDController angleController;
 
+//Creating a FeedForward setting for a reference tracking for the desired output of the motor
 SimpleMotorFeedforward feedForward =
 new SimpleMotorFeedforward(Setting.driveKS,Setting.driveKV,Setting.driveKA);//FIXME find values
 
+//Creating the swerveModules of the number and the constants
 public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants){
     this.moduleNumber = moduleNumber;
     angleOffset = moduleConstants.angleOffset;
@@ -62,8 +81,10 @@ public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants){
     driveController = driveMotor.getPIDController();
     configDriveMotor();
 
+    //Lastangle of each swerveModules
     lastAngle = getState().angle;
     }
+    //Creates desiredState of the Swervemodules which is WPILIB solution for swerveDrive kinematics
 public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
     // Custom optimize command, since default WPILib optimize assumes continuous controller which
     // REV and CTRE are not
@@ -72,16 +93,19 @@ public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) 
     setAngle(desiredState);
     setSpeed(desiredState, isOpenLoop);
     }
+    //Method to reset the CanCoder in order to get the AbsolutePosition
 private void resetToAbsolute() {
     double absolutePosition = getCanCoder().getDegrees() - angleOffset.getDegrees();
     integratedAngleEncoder.setPosition(absolutePosition);
     }
-
-    private void configAngleEncoder() {
+    
+    //Method for the Config of the AngleEncoder
+private void configAngleEncoder() {
     angleEncoder.configFactoryDefault();
     CANCoderUtil.setCANCoderBusUsage(angleEncoder, CCUsage.kMinimal);
     angleEncoder.configAllSettings(Robot.ctreConfigs.swerveCanCoderConfig);
     }
+    //Method of the Config of the Angle Motor
 private void configAngleMotor() {
     angleMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(angleMotor, Usage.kPositionOnly);
@@ -99,6 +123,7 @@ private void configAngleMotor() {
     resetToAbsolute();
     }
 
+    //Method of the Config of the Drive Motor
 private void configDriveMotor() {
     driveMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(driveMotor, Usage.kAll);
@@ -114,6 +139,8 @@ private void configDriveMotor() {
     driveMotor.burnFlash();
     driveEncoder.setPosition(0.0);
     }
+
+    //Method of the desired or inputted speed of the SwerveDrive
 private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
     if (isOpenLoop) {
         double percentOutput = desiredState.speedMetersPerSecond / Setting.maxVelocityMetersPerSecond;
@@ -125,8 +152,9 @@ private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
             0,
             feedForward.calculate(desiredState.speedMetersPerSecond));
     }
-    }
+}
 
+    //Method in order to get the Angle for the desired State of the SwerveDrive
 private void setAngle(SwerveModuleState desiredState) {
     // Prevent rotating module if speed is less then 1%. Prevents jittering.
     Rotation2d angle =
@@ -138,17 +166,21 @@ private void setAngle(SwerveModuleState desiredState) {
     lastAngle = angle;
     }
 
+    //Method in order to get the Angle of the Encoder value within the Angle Motor
 private Rotation2d getAngle() {
     return Rotation2d.fromDegrees(integratedAngleEncoder.getPosition());
     }
-
+    //Method in order to get the Angle of the Encoder value within the CanCoder
 public Rotation2d getCanCoder() {
     return Rotation2d.fromDegrees(angleEncoder.getAbsolutePosition());
     }
 
+    //Method in order to get the States of the SwerveDrive module of the velocity and angle of the Drive Motor
 public SwerveModuleState getState() {
     return new SwerveModuleState(driveEncoder.getVelocity(), getAngle());
     }
+
+    //SmartDashBoard information of the Encoder values of the Integrated and CanCoder of Angle Motor
 public SwerveModulePosition getPosition(){
     SmartDashboard.putNumber("Encoder position " + moduleNumber, angleEncoder.getPosition());
     SmartDashboard.putNumber("Offset degrees " + moduleNumber, angleOffset.getDegrees());
