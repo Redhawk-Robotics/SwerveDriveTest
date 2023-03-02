@@ -8,7 +8,7 @@ import edu.wpi.first.math.util.Units;
 
 public interface Setting {
     /* Swerve Voltage Compensation */
-    public static final double voltageComp = 12;    
+    public static final double voltageComp = 6;    
 
     //RobotCharacterizations
     public static final double drivetrainTrackWidthMeters = Units.inchesToMeters(28.5);
