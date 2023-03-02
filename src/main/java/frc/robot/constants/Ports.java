@@ -28,6 +28,9 @@ public static final class Gyro{
     public static final int drivetrainPigeonID = 39;
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 }
+public static final class PDH{
+    public static final int port = 1; 
+}
 public static final class arm{
 public static final int leftArm = 13;
 public static final int rightArm = 14;

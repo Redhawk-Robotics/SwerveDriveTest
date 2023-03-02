@@ -8,6 +8,7 @@ import frc.robot.commands.Claw.Claw;
 import frc.robot.commands.Swerve.Drive;
 import frc.robot.constants.Ports;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.modules.PDH;
 import frc.robot.test.armTest;
 import frc.robot.test.clawTest;
 import frc.robot.test.intakeTest;
@@ -35,13 +36,10 @@ public class RobotContainer {
 
   /* Subsystems */
   private final SwerveSubsystem SwerveDrive = new SwerveSubsystem();
+  private final PDH powerDistributionHub = new PDH();
+
   //private final armTest arm = new armTest();
   //private final intakeTest intake = new intakeTest();
-<<<<<<< HEAD
-=======
-  private final clawTest clawSubsystem = new clawTest();
-  private final Claw claw = new Claw(clawSubsystem);
->>>>>>> db1a8a50219c7f16c8d1a62ced8d8f221bdcf9b3
 
   /* Commands */
 
