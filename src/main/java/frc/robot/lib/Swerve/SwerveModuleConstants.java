@@ -1,4 +1,4 @@
-package frc.robot.lib;
+package frc.robot.lib.Swerve;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 public class SwerveModuleConstants {

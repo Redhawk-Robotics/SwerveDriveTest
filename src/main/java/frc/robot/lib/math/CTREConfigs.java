@@ -1,4 +1,4 @@
-package frc.robot.lib;
+package frc.robot.lib.math;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;

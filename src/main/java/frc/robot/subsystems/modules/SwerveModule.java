@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.constants.Setting;
-import frc.robot.lib.SwerveModuleConstants;
+import frc.robot.lib.Swerve.SwerveModuleConstants;
 import frc.robot.lib.math.OnboardModuleState;
 import frc.robot.lib.util.CANCoderUtil;
 import frc.robot.lib.util.CANSparkMaxUtil;
@@ -56,12 +56,15 @@ private final CANCoder angleEncoder;
 private final SparkMaxPIDController driveController;
 private final SparkMaxPIDController angleController;
 
+//private final SwerveModuleConstants configuration;
+
 //Creating a FeedForward setting for a reference tracking for the desired output of the motor
 SimpleMotorFeedforward feedForward =
 new SimpleMotorFeedforward(Setting.driveKS,Setting.driveKV,Setting.driveKA);//FIXME find values
 
 //Creating the swerveModules of the number and the constants
 public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants){
+    //this.configuration = moduleConstants;
     this.moduleNumber = moduleNumber;
     angleOffset = moduleConstants.angleOffset;
 
@@ -167,7 +170,7 @@ private void setAngle(SwerveModuleState desiredState) {
     }
 
     //Method in order to get the Angle of the Encoder value within the Angle Motor
-private Rotation2d getAngle() {
+public Rotation2d getAngle() {
     return Rotation2d.fromDegrees(integratedAngleEncoder.getPosition());
     }
     //Method in order to get the Angle of the Encoder value within the CanCoder

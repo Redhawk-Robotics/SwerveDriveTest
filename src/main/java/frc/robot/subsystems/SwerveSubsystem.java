@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Ports;
 import frc.robot.constants.Setting;
+import frc.robot.lib.Swerve.SwerveModuleState2;
 import frc.robot.subsystems.modules.PigeonModule;
 import frc.robot.subsystems.modules.SwerveModule;
 
@@ -28,6 +29,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModule[] SwerveMods;
   private PigeonModule m_Pigeon;
   private Field2d field;
+  private SwerveModule modules;
 
   public SwerveSubsystem() {
     // By default we use a Pigeon for our gyroscope. But if you use another
@@ -140,6 +142,19 @@ public class SwerveSubsystem extends SubsystemBase {
         ? Rotation2d.fromDegrees(360 - m_Pigeon.getYaw())
         : Rotation2d.fromDegrees(m_Pigeon.getYaw());
   }
+  /**
+   * Point all modules toward the robot center, thus making the robot very difficult to move. Forcing the robot to keep
+   * the current pose.
+   */
+  public void lockPose()
+  {
+    for (SwerveModule swerveModule : SwerveMods)
+    {
+      swerveModule.setDesiredState(
+          new SwerveModuleState2(0, modules.getAngle(), 0), true);
+    }
+  }
+
 
   @Override
   public void periodic() {
