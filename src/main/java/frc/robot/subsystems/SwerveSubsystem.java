@@ -152,6 +152,7 @@ public class SwerveSubsystem extends SubsystemBase {
     {
       swerveModule.setDesiredState(
           new SwerveModuleState2(0, modules.getAngle(), 0), true);
+          System.out.println("Lock Pose :)))");
     }
   }
 

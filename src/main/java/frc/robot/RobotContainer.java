@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -125,9 +126,14 @@ public class RobotContainer {
 
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
-    //tester.whileTrue(new InstantCommand(() -> intake.intakeDown()));
+    tester.whileTrue(new RepeatCommand(new InstantCommand(SwerveDrive::lockPose, SwerveDrive)));
 
-    // System.out.print("Swervy");
+    //tester.onTrue(new RepeatCommand(new InstantCommand(() -> SwerveDrive.lockPose())));//Try tmmrw
+    //tester.whileTrue(new RepeatCommand(new InstantCommand(() -> SwerveDrive.lockPose())));//Try tmmrw
+    //tester.whileTrue(new RepeatCommand(new InstantCommand(() -> SwerveDrive.lockPose())));//Try tmmrw
+    //tester.whileTrue(new InstantCommand(() -> SwerveDrive.lockPose()));//Try tmmrw
+
+
 
     // slowSpeed.onTrue(new InstantCommand(() -> SwerveDrive.slowSpeed()));
 
