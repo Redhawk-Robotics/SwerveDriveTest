@@ -4,15 +4,22 @@
 
 package frc.robot.commands.test;
 
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.test.testWhatever;
 
 public class testMotorCommand extends CommandBase {
   /** Creates a new testMotorCommand. */
   private testWhatever tester;
-  public testMotorCommand(testWhatever tester) {
+  private boolean power;
+  double setPower = 0;
+
+  public testMotorCommand(testWhatever tester, boolean power) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.tester = tester;
+    this.power = power;
     addRequirements(tester);
   }
 
@@ -25,7 +32,14 @@ public class testMotorCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    // if (power == true) {
+    //   setPower = .1;
+    // } else {
+    //   setPower = 0;
+    // }
+    tester.setMotor(0.3);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

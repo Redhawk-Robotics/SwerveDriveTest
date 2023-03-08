@@ -6,12 +6,18 @@ package frc.robot;
 
 import frc.robot.commands.Claw.Claw;
 import frc.robot.commands.Swerve.Drive;
+import frc.robot.commands.test.testMotorCommand;
 import frc.robot.constants.Ports;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.modules.CompressorModule;
 import frc.robot.subsystems.modules.PDH;
 import frc.robot.test.armTest;
 import frc.robot.test.clawTest;
 import frc.robot.test.intakeTest;
+import frc.robot.test.testWhatever;
+
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,6 +43,9 @@ public class RobotContainer {
   /* Subsystems */
   private final SwerveSubsystem SwerveDrive = new SwerveSubsystem();
   private final PDH powerDistributionHub = new PDH();
+  private final testWhatever testers = new testWhatever();
+
+  private final CompressorModule compressor = new CompressorModule();
 
   //private final armTest arm = new armTest();
   //private final intakeTest intake = new intakeTest();
@@ -48,6 +57,11 @@ public class RobotContainer {
   private final XboxController DRIVER = new XboxController(Ports.Gamepad.DRIVER);
 
   private final XboxController OPERATOR = new XboxController(Ports.Gamepad.OPERATOR);
+
+  
+  private final boolean power = DRIVER.getAButton();
+
+  private final testMotorCommand testmotor = new testMotorCommand(testers, power);
 
   /* Drive Controls */
   private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -64,6 +78,24 @@ public class RobotContainer {
   private final Trigger highGrid = new JoystickButton(DRIVER, XboxController.Button.kLeftBumper.value);
 
   private final Trigger tester = new JoystickButton(DRIVER, XboxController.Button.kB.value);
+  
+  private final Trigger tester2 = new JoystickButton(DRIVER, XboxController.Button.kX.value);
+
+  //Controller two
+  private final Trigger Abutton2 = new JoystickButton(OPERATOR, XboxController.Button.kA.value);
+  private final Trigger Bbutton2 = new JoystickButton(OPERATOR, XboxController.Button.kB.value);
+  private final Trigger Xbutton2 = new JoystickButton(OPERATOR, XboxController.Button.kX.value);
+  private final Trigger Ybutton2 = new JoystickButton(OPERATOR, XboxController.Button.kY.value);
+
+  private final Trigger RightBumper2 = new JoystickButton(OPERATOR, XboxController.Button.kRightBumper.value);
+  private final Trigger leftBumper2 = new JoystickButton(OPERATOR, XboxController.Button.kLeftBumper.value);
+
+  private final Trigger startButton2 = new JoystickButton(OPERATOR, XboxController.Button.kStart.value);
+  private final Trigger BackButton2 = new JoystickButton(OPERATOR, XboxController.Button.kBack.value);
+
+  private final Trigger LeftStickButton2 = new JoystickButton(OPERATOR, XboxController.Button.kLeftStick.value);
+  private final Trigger RightStickButton2 = new JoystickButton(OPERATOR, XboxController.Button.kRightStick.value);
+
 
   // TODO May need to switch the object for each button to JoystickButton
   // Create SmartDashboard chooser for autonomous routines
@@ -108,6 +140,8 @@ public class RobotContainer {
   /****************/
 
   private void configureDefaultCommands() {
+    //compressor.enableAnalog(0, 120);
+    //compressor.enableDigital();//FIXME Try later
   }
 
   /***************/
@@ -125,7 +159,40 @@ public class RobotContainer {
 
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
-    //tester.whileTrue(new InstantCommand(() -> intake.intakeDown()));
+    
+    tester.whileTrue(new InstantCommand(() -> testers.upGoArm()));
+    tester.whileFalse(new InstantCommand(() -> testers.stopArm()));
+
+    tester2.whileTrue(new InstantCommand(() -> testers.downGoArm()));
+    tester2.whileFalse(new InstantCommand(() -> testers.stopArm()));
+
+    //Compressor 
+    Abutton2.onTrue(new InstantCommand(()-> testers.upGoClaw()));
+    Abutton2.onFalse(new InstantCommand(()-> testers.stopClaw()));
+
+    Bbutton2.onTrue(new InstantCommand(()-> testers.downGoClaw()));
+    Bbutton2.onFalse(new InstantCommand(()-> testers.stopClaw()));
+
+    //solenoids
+    Xbutton2.onTrue(new InstantCommand(()-> testers.openClaw()));
+    Ybutton2.onTrue(new InstantCommand(()-> testers.closeClaw()));
+
+    leftBumper2.onTrue(new InstantCommand(()-> testers.upGoWrist()));
+    leftBumper2.onFalse(new InstantCommand(()-> testers.stopWrist()));
+
+    RightBumper2.onTrue(new InstantCommand(()-> testers.downGoWrist()));
+    RightBumper2.onFalse(new InstantCommand(()-> testers.stopWrist()));
+
+
+    //extender and wrist needs another button to go back
+    startButton2.onTrue(new InstantCommand(()-> testers.upExtender()));
+    startButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
+
+    BackButton2.onTrue(new InstantCommand(()-> testers.downExtender()));
+    BackButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
+
+
+
 
     // System.out.print("Swervy");
 
