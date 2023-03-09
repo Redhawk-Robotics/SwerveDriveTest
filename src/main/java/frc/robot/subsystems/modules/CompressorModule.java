@@ -34,6 +34,10 @@ public class CompressorModule {
     public void enableDigital(){
         compressor.enableDigital();
     }
+    
+    public void disableCompressor(){
+        compressor.disable();
+    }
 
     public void setPressureAnalog(double pressure) {
         if (pressure == 220) {

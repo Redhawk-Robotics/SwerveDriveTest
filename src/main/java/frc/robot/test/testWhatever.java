@@ -16,31 +16,46 @@ import frc.robot.constants.Setting;
 
 public class testWhatever extends SubsystemBase {
   /** Creates a new testWhatever. */
-  private final CANSparkMax armMotorleft;
-  private final CANSparkMax armMotorright;
-  private final RelativeEncoder armEncoder;
-  private final RelativeEncoder armEncoderright;
+  private final CANSparkMax armMotorLeft;
+  private final CANSparkMax armMotorRight;
+
+  private final RelativeEncoder armEncoderLeft;
+  private final RelativeEncoder armEncoderRight;
 
   //compressor
   private final CANSparkMax leftClaw;
   private final CANSparkMax rightClaw;
 
+
   private final CANSparkMax wrist;
+  private final RelativeEncoder wristEncoder;
+
   private final CANSparkMax extender;
+  private final RelativeEncoder extenderEncoder;
 
   private final DoubleSolenoid clawOpen;
 
-
-  private double value = 0.5;
-  
-  private double EncoderValue;
   private double stop = 0;
 
-public testWhatever() {
-armMotorleft = new CANSparkMax(16, MotorType.kBrushless);
-armMotorright = new CANSparkMax(21, MotorType.kBrushless);
+  private double extenderSpeed = 0.75;
+  private double extenderSpeedReverse = -0.75;
 
-leftClaw = new CANSparkMax(12, MotorType.kBrushless);
+  private double wristSpeed = 0.5;
+  private double wristSpeedReverse = -0.5;
+
+  private double armSpeed = 0.3;
+  private double armSpeedReverse = -0.3;
+
+  private double clawSpeed = 0.5;
+  private double clawSpeedReverse = -0.5;
+
+  private double EncoderValue;
+
+public testWhatever() {
+armMotorLeft = new CANSparkMax(16, MotorType.kBrushless);
+armMotorRight = new CANSparkMax(21, MotorType.kBrushless);
+
+leftClaw = new CANSparkMax(62, MotorType.kBrushless);
 rightClaw = new CANSparkMax(49, MotorType.kBrushless);
 
 wrist = new CANSparkMax(24, MotorType.kBrushless);
@@ -59,11 +74,14 @@ leftClaw.setInverted(false);
 rightClaw.setInverted(true);;
 
 
-armMotorleft.setInverted(false);
-armMotorright.setInverted(true);
+armMotorLeft.setInverted(false);
+armMotorRight.setInverted(true);
 
-armEncoder = armMotorleft.getEncoder();
-armEncoderright = armMotorright.getEncoder();
+armEncoderLeft = armMotorLeft.getEncoder();
+armEncoderRight = armMotorRight.getEncoder();
+
+wristEncoder = wrist.getEncoder();
+extenderEncoder = extender.getEncoder();
 
   }
 
@@ -74,48 +92,59 @@ armEncoderright = armMotorright.getEncoder();
   }
   //arm
   public void setMotor(double speed) {
-    armMotorleft.set(speed);
-    armMotorright.set(speed);
+    armMotorLeft.set(speed);
+    armMotorRight.set(speed);
  } 
  //claw motors
  public void setMotorClaw(double speed) {
   rightClaw.set(speed);
   leftClaw.set(speed);
 } 
-  public double getEncoderMeters(double positionLeft) {
-    positionLeft = armEncoder.getPosition() * Setting.armSetting.kEncoderTick2Meter;
+  public double getEncoderMetersLeftArm(double positionLeft) {
+    positionLeft = armEncoderLeft.getPosition() * Setting.armSetting.kEncoderTick2Meter;
     return positionLeft;
   }
-  public double getEncoderMetersRight(double positionRight) {
-    positionRight = armEncoder.getPosition() * Setting.armSetting.kEncoderTick2Meter;
+  public double getEncoderMetersRightArm(double positionRight) {
+    positionRight = armEncoderRight.getPosition() * Setting.armSetting.kEncoderTick2Meter;
     return positionRight;
   }
 
+  public double getEncoderMetersExtender(double positonExtender){
+    positonExtender = extenderEncoder.getPosition() * Setting.armSetting.kEncoderTick2Meter;
+    return positonExtender;
+  }
+
+  public double getEncoderMetersWrist(double positonWrist){
+    positonWrist = wristEncoder.getPosition() * Setting.armSetting.kEncoderTick2Meter;
+    return positonWrist;
+  }
+
+
   //arm
   public void upGoArm() {
-    armMotorleft.set(.3);
-    armMotorright.set(.3);
+    armMotorLeft.set(armSpeed);
+    armMotorRight.set(armSpeed);
   }
 
   public void downGoArm() {
-    armMotorleft.set(-.3 / 2);
-    armMotorright.set(-.3 / 2);
+    armMotorLeft.set(armSpeedReverse);
+    armMotorRight.set(armSpeedReverse);
   }
 
   public void stopArm() {
-    armMotorleft.set(stop);
-    armMotorright.set(stop);
+    armMotorLeft.set(stop);
+    armMotorRight.set(stop);
   }
   
 
   //Claw
   public void upGoClaw() {
-    leftClaw.set(value);
-    rightClaw.set(value);
+    leftClaw.set(clawSpeed);
+    rightClaw.set(clawSpeed);
   }  
   public void downGoClaw() {
-    leftClaw.set(-value / 2);
-    rightClaw.set(-value / 2);
+    leftClaw.set(clawSpeedReverse);
+    rightClaw.set(clawSpeedReverse);
   }
 
   public void stopClaw() {
@@ -133,25 +162,25 @@ armEncoderright = armMotorright.getEncoder();
   
   //Wrist
   public void upGoWrist() {
-    wrist.set(value);
+    wrist.set(wristSpeed);
   }
 
   public void stopWrist() {
     wrist.set(stop);
   }
   public void downGoWrist() {
-    wrist.set(-value / 2);
+    wrist.set(wristSpeedReverse);
   }
 
   //Extender
   public void upExtender() {
-    extender.set(value);
+    extender.set(extenderSpeed);
   }
 
   public void stopExtender() {
     extender.set(stop);
   }
   public void downExtender() {
-    extender.set(-value / 2);
+    extender.set(extenderSpeedReverse);
   }
 }

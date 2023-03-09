@@ -45,7 +45,8 @@ public class RobotContainer {
   private final PDH powerDistributionHub = new PDH();
   private final testWhatever testers = new testWhatever();
 
-  private final CompressorModule compressor = new CompressorModule();
+  private final CompressorModule 
+  compressor = new CompressorModule();
 
   //private final armTest arm = new armTest();
   //private final intakeTest intake = new intakeTest();
@@ -140,7 +141,7 @@ public class RobotContainer {
   /****************/
 
   private void configureDefaultCommands() {
-    //compressor.enableAnalog(0, 120);
+    compressor.enableAnalog(0, 120);
     //compressor.enableDigital();//FIXME Try later
   }
 
@@ -191,7 +192,8 @@ public class RobotContainer {
     BackButton2.onTrue(new InstantCommand(()-> testers.downExtender()));
     BackButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
 
-
+    LeftStickButton2.whileFalse((new InstantCommand(()-> compressor.disableCompressor())));
+    RightStickButton2.onTrue(new InstantCommand(()-> compressor.enableAnalog(0, 120)));
 
 
     // System.out.print("Swervy");
