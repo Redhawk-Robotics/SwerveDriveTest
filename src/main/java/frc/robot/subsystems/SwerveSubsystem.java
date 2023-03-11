@@ -28,6 +28,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModule[] SwerveMods;
   private PigeonModule m_Pigeon;
   private Field2d field;
+  private SwerveModule module;
 
   public SwerveSubsystem() {
     // By default we use a Pigeon for our gyroscope. But if you use another
@@ -79,7 +80,7 @@ public class SwerveSubsystem extends SubsystemBase {
         Setting.maxVelocityMetersPerSecond);
 
     for (SwerveModule mod : SwerveMods) {
-      mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
+      mod.setDesiredState(swerveModuleStates[mod.moduleNumber]);
     }
   }
 
@@ -89,7 +90,7 @@ public class SwerveSubsystem extends SubsystemBase {
     SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Setting.maxVelocityMetersPerSecond);
 
     for (SwerveModule mod : SwerveMods) {
-      mod.setDesiredState(desiredStates[mod.moduleNumber], false); // false
+      mod.setDesiredState(desiredStates[mod.moduleNumber]); // false recomment later
     }
   }
 
@@ -128,6 +129,25 @@ public class SwerveSubsystem extends SubsystemBase {
     return positions;
   }
 
+  public void Lock(){
+    for (SwerveModule mod : SwerveMods) {
+      SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+      SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+      SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+      SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+    }
+  }
+
+    //realigns all modules
+    public void resetModules() {
+      for (SwerveModule mod : SwerveMods) {
+        SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+        SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+        SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+        SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+      }
+    }
+
   //Ressetting the Pigeon Gyroscope in order for feild centric driving
   public void zeroGyro() {
     m_Pigeon.setYaw(0.0);
@@ -139,6 +159,14 @@ public class SwerveSubsystem extends SubsystemBase {
     return (Ports.Gyro.invertGyro)
         ? Rotation2d.fromDegrees(360 - m_Pigeon.getYaw())
         : Rotation2d.fromDegrees(m_Pigeon.getYaw());
+  }
+
+  //may need to fix later
+  
+  public Rotation2d getPitch(){
+    return (Ports.Gyro.invertGyro)
+    ? Rotation2d.fromDegrees(360 - m_Pigeon.getPitch())
+    : Rotation2d.fromDegrees(m_Pigeon.getPitch());
   }
 
   @Override

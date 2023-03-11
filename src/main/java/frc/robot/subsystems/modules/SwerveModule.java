@@ -56,6 +56,10 @@ private final CANCoder angleEncoder;
 private final SparkMaxPIDController driveController;
 private final SparkMaxPIDController angleController;
 
+private double chassisAngularOffset = 0;
+
+private SwerveModuleState m_desiredState = new SwerveModuleState(0.0, new Rotation2d());
+
 //Creating a FeedForward setting for a reference tracking for the desired output of the motor
 SimpleMotorFeedforward feedForward =
 new SimpleMotorFeedforward(Setting.driveKS,Setting.driveKV,Setting.driveKA);//FIXME find values
@@ -84,8 +88,11 @@ public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants){
     //Lastangle of each swerveModules
     lastAngle = getState().angle;
     }
+    /**
+     * try the set desired states
+     */
     //Creates desiredState of the Swervemodules which is WPILIB solution for swerveDrive kinematics
-public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
+public void setDesiredStatesOld(SwerveModuleState desiredState, boolean isOpenLoop) {
     // Custom optimize command, since default WPILib optimize assumes continuous controller which
     // REV and CTRE are not
     desiredState = OnboardModuleState.optimize(desiredState, getState().angle);
@@ -93,6 +100,27 @@ public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) 
     setAngle(desiredState);
     setSpeed(desiredState, isOpenLoop);
     }
+    /**
+   * Sets the desired state for the module.
+   *
+   * @param desiredState Desired state with speed and angle.
+   */
+  public void setDesiredState(SwerveModuleState desiredState) {
+    // Apply chassis angular offset to the desired state.
+    SwerveModuleState correctedDesiredState = new SwerveModuleState();
+    correctedDesiredState.speedMetersPerSecond = desiredState.speedMetersPerSecond;
+    correctedDesiredState.angle = desiredState.angle.plus(Rotation2d.fromRadians(chassisAngularOffset));
+
+    // Optimize the reference state to avoid spinning further than 90 degrees.
+    SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(correctedDesiredState,
+        new Rotation2d(angleEncoder.getPosition()));
+
+    // Command driving and turning SPARKS MAX towards their respective setpoints.
+    driveController.setReference(optimizedDesiredState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);
+    angleController.setReference(optimizedDesiredState.angle.getRadians(), CANSparkMax.ControlType.kPosition);
+
+    m_desiredState = desiredState;
+  }
     //Method to reset the CanCoder in order to get the AbsolutePosition
 private void resetToAbsolute() {
     double absolutePosition = getCanCoder().getDegrees() - angleOffset.getDegrees();

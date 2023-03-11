@@ -78,7 +78,7 @@ public class RobotContainer {
   private final Trigger slowSpeed = new JoystickButton(DRIVER, XboxController.Button.kRightBumper.value);
 
   // Additional buttons
-  private final Trigger highGrid = new JoystickButton(DRIVER, XboxController.Button.kLeftBumper.value);
+  private final Trigger lock = new JoystickButton(DRIVER, XboxController.Button.kLeftBumper.value);
 
   private final Trigger tester = new JoystickButton(DRIVER, XboxController.Button.kB.value);
   
@@ -164,6 +164,8 @@ public class RobotContainer {
 
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
+
+    lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));
     
     tester.whileTrue(new InstantCommand(() -> testers.upGoArm()));
     tester.whileFalse(new InstantCommand(() -> testers.stopArm()));
