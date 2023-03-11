@@ -18,6 +18,8 @@ import frc.robot.test.testWhatever;
 
 import java.util.function.BooleanSupplier;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,8 +47,8 @@ public class RobotContainer {
   private final PDH powerDistributionHub = new PDH();
   private final testWhatever testers = new testWhatever();
 
-  private final CompressorModule 
-  compressor = new CompressorModule();
+  private final Compressor compressor = new Compressor(1,PneumaticsModuleType.REVPH);
+
 
   //private final armTest arm = new armTest();
   //private final intakeTest intake = new intakeTest();
@@ -141,7 +143,9 @@ public class RobotContainer {
   /****************/
 
   private void configureDefaultCommands() {
-    compressor.enableAnalog(0, 120);
+    compressor.disable();
+    //compressor.disableCompressor();
+    //compressor.enableAnalog(0, 120);
     //compressor.enableDigital();//FIXME Try later
   }
 
@@ -192,8 +196,8 @@ public class RobotContainer {
     BackButton2.onTrue(new InstantCommand(()-> testers.downExtender()));
     BackButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
 
-    LeftStickButton2.whileFalse((new InstantCommand(()-> compressor.disableCompressor())));
-    RightStickButton2.onTrue(new InstantCommand(()-> compressor.enableAnalog(0, 120)));
+    LeftStickButton2.whileFalse((new InstantCommand(()-> compressor.disable())));
+    RightStickButton2.whileTrue(new InstantCommand(()-> compressor.enableAnalog(0, 120)));
 
 
     // System.out.print("Swervy");

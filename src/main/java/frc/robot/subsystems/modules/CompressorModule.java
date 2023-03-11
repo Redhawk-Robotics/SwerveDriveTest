@@ -10,7 +10,7 @@ public class CompressorModule {
     private static CompressorModule singleton;
 
     public CompressorModule() {
-        this.compressor = new Compressor(PneumaticsModuleType.REVPH);
+        this.compressor = new Compressor(1,PneumaticsModuleType.REVPH);
     }
 
     public static CompressorModule getCompressorModule() {
@@ -34,18 +34,18 @@ public class CompressorModule {
     public void enableDigital(){
         compressor.enableDigital();
     }
-    
+
     public void disableCompressor(){
         compressor.disable();
     }
 
-    public void setPressureAnalog(double pressure) {
-        if (pressure == 220) {
-            compressor.disable();
-        } else if (pressure >= 60) {
-            enableAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
-        } else {
-            enableAnalog(Setting.compressor.relativeMinPressure,Setting.compressor.absoluteMaxPressure);
-        }
-    }
+    // public void setPressureAnalog(double pressure) {
+    //     if (pressure == 220) {
+    //         compressor.disable();
+    //     } else if (pressure >= 60) {
+    //         enableAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
+    //     } else {
+    //         enableAnalog(Setting.compressor.relativeMinPressure,Setting.compressor.absoluteMaxPressure);
+    //     }
+    // }
 }
