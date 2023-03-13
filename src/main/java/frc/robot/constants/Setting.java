@@ -122,8 +122,6 @@ public interface Setting {
 
         public static final IdleMode clawNeutralMode = IdleMode.kBrake;
 
-        public static final boolean leftClawMotorInvert = true;
-        public static final boolean rightClawMotorInvert = false;
     }
 
     public static final class armSetting{
@@ -140,8 +138,6 @@ public interface Setting {
 
         public static final IdleMode armNeutralMode = IdleMode.kCoast;
 
-        public static final boolean leftArmMotorInvert = true;
-        public static final boolean rightArmMotorInvert = false;
    }
    public static final class extenderSetting{
         public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
@@ -156,8 +152,6 @@ public interface Setting {
         public static final int extenderContinousCurrentLimit = 40; 
 
         public static final IdleMode extenderNeutralMode = IdleMode.kBrake;
-
-        public static final boolean ExtenderMotorInvert = false;
    }
    
     public static final class AutoConstants {

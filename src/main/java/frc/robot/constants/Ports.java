@@ -31,16 +31,27 @@ public static final class Gyro{
 public static final class PDH{
     public static final int port = 1; 
 }
-public static final class arm{
-public static final int leftArm = 13;
-public static final int rightArm = 14;
+public static final class Compressor{
+    public static final int port = 1;
 }
-public static final class extender{
-public static final int extend = 15;
+public static final class Arm{
+    public static final int leftArm = 13;
+    public static final int rightArm = 14;
+
+    public static final boolean leftArmMotorInvert = true;
+    public static final boolean rightArmMotorInvert = false;
 }
-public static final class claw{
-public static final int leftClaw = 16;
-public static final int rightClaw = 17;
+public static final class Extender{
+    public static final int extend = 15;
+
+    public static final boolean ExtenderMotorInvert = false;
+}
+public static final class Claw{
+    public static final int leftClaw = 16;
+    public static final int rightClaw = 17;
+
+    public static final boolean leftClawMotorInvert = true;
+    public static final boolean rightClawMotorInvert = false;
 }
 //FRONT_LEFT_MODULE
 public static final class frontLeftModule0{

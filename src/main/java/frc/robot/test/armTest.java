@@ -28,18 +28,18 @@ public class armTest extends SubsystemBase {
 
 
   public armTest() {
-    leftArmMotor = new CANSparkMax(Ports.arm.leftArm, MotorType.kBrushless);
+    leftArmMotor = new CANSparkMax(Ports.Arm.leftArm, MotorType.kBrushless);
     leftArmEncoder = leftArmMotor.getEncoder();  
 
-    rightArmMotor = new CANSparkMax(Ports.arm.rightArm, MotorType.kBrushless);
+    rightArmMotor = new CANSparkMax(Ports.Arm.rightArm, MotorType.kBrushless);
     rightArmEncoder = rightArmMotor.getEncoder();  
 
     //armAngleController = leftArmMotor.getPIDController();
     armAngleController = rightArmMotor.getPIDController();//TODO not sure if we need one or two PID controllers
 
-    configArmMotor(leftArmMotor,leftArmEncoder,armAngleController,Setting.armSetting.leftArmMotorInvert);
+    configArmMotor(leftArmMotor,leftArmEncoder,armAngleController,Ports.Arm.leftArmMotorInvert);
 
-    configArmMotor(rightArmMotor,rightArmEncoder,armAngleController,Setting.armSetting.rightArmMotorInvert);
+    configArmMotor(rightArmMotor,rightArmEncoder,armAngleController,Ports.Arm.rightArmMotorInvert);
 
   }
 

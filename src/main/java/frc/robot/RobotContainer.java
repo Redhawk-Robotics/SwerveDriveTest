@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import frc.robot.commands.Autons.DoNothingAuton;
+import frc.robot.commands.Autons.TestPathPlannerAuton;
 import frc.robot.commands.Claw.Claw;
 import frc.robot.commands.Swerve.Drive;
 import frc.robot.commands.test.testMotorCommand;
@@ -215,8 +217,10 @@ public class RobotContainer {
   /**************/
 
   public void configureAutons() {
-    // autonChooser.setDefaultOption("Do Nothing", new DoNothingAuton());
     SmartDashboard.putData("Autonomous: ", Autons);
+
+    Autons.setDefaultOption("Do Nothing", new DoNothingAuton());
+    //Autons.addOption("AutoBalance", new TestPathPlannerAuton());
   }
 
   /**
