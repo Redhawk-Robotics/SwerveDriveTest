@@ -52,6 +52,6 @@ public class AutoBalanceRenew extends ProfiledPIDCommand {
   }
   
   public void end() {
-    swerveDrive.Lock();
+    //swerveDrive.Lock();
   }
 }

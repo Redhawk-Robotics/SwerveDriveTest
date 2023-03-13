@@ -37,14 +37,14 @@ public class testWhatever extends SubsystemBase {
 
   private double stop = 0;
 
-  private double extenderSpeed = 0.75;
-  private double extenderSpeedReverse = -0.75;
+  private double extenderSpeed = 1;
+  private double extenderSpeedReverse = -1;
 
   private double wristSpeed = 0.25;
   private double wristSpeedReverse = -0.25;
 
-  private double armSpeed = 0.3;
-  private double armSpeedReverse = -0.3;
+  private double armSpeed = 0.1;
+  private double armSpeedReverse = -0.1;
 
   private double clawSpeed = 0.5;
   private double clawSpeedReverse = -0.5;

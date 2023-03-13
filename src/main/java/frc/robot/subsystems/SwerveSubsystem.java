@@ -55,10 +55,10 @@ public class SwerveSubsystem extends SubsystemBase {
         new SwerveModule(3, Ports.backRightModule3.constants)
     };
 
-    frontLeftModule0 = new SwerveModule(0, Ports.frontLeftModule0.constants);
-    frontRightModule1 = new SwerveModule(1, Ports.frontRightModule1.constants);
-    backLeftModule2 = new SwerveModule(2, Ports.backLeftModule2.constants);
-    backRightModule3 = new SwerveModule(3, Ports.backRightModule3.constants);
+    // frontLeftModule0 = new SwerveModule(0, Ports.frontLeftModule0.constants);
+    // frontRightModule1 = new SwerveModule(1, Ports.frontRightModule1.constants);
+    // backLeftModule2 = new SwerveModule(2, Ports.backLeftModule2.constants);
+    // backRightModule3 = new SwerveModule(3, Ports.backRightModule3.constants);
 
     //Creating the odometry of the robot
     swerveOdometry = new SwerveDriveOdometry(Setting.mKinematics, getYaw(), getPositions());
@@ -138,26 +138,26 @@ public class SwerveSubsystem extends SubsystemBase {
     return positions;
   }
 
-  public void Lock(){
-    SwerveMods[0].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-    SwerveMods[1].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-    SwerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-    SwerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  // public void Lock(){
+  //   // SwerveMods[0].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  //   // SwerveMods[1].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+  //   // SwerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+  //   // SwerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
 
-    //if doesn't work
-    // frontLeftModule0.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-    // frontRightModule1.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-    // backLeftModule2.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-    // backRightModule3.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-  }
+  //   //if doesn't work
+  //   frontLeftModule0.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  //   frontRightModule1.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+  //   backLeftModule2.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+  //   backRightModule3.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  // }
 
     //realigns all modules
-    public void resetModules() {
-    SwerveMods[0].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
-    SwerveMods[1].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
-    SwerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
-    SwerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
-    }
+    // public void resetModules() {
+    // SwerveMods[0].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+    // SwerveMods[1].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+    // SwerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+    // SwerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+    // }
 
   //Ressetting the Pigeon Gyroscope in order for feild centric driving
   public void zeroGyro() {

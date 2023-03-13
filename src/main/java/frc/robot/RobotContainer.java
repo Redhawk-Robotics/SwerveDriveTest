@@ -49,7 +49,7 @@ public class RobotContainer {
   private final PDH powerDistributionHub = new PDH();
   private final testWhatever testers = new testWhatever();
 
-  private final Compressor compressor = new Compressor(1,PneumaticsModuleType.REVPH);
+  private final CompressorModule compressor = CompressorModule.getCompressorModule();
 
 
   //private final armTest arm = new armTest();
@@ -145,7 +145,7 @@ public class RobotContainer {
   /****************/
 
   private void configureDefaultCommands() {
-    compressor.disable();
+    //compressor.disable();
     //compressor.disableCompressor();
     //compressor.enableAnalog(0, 120);
     //compressor.enableDigital();//FIXME Try later
@@ -167,7 +167,7 @@ public class RobotContainer {
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
 
-    lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));//try this line if not add whiletrue
+    //lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));//try this line if not add whiletrue
     //lock.onTrue(new RepeatCommand(new InstantCommand(() -> SwerveDrive.Lock())));
 
     
@@ -202,7 +202,7 @@ public class RobotContainer {
     BackButton2.onTrue(new InstantCommand(()-> testers.downExtender()));
     BackButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
 
-    LeftStickButton2.whileFalse((new InstantCommand(()-> compressor.disable())));
+    //LeftStickButton2.whileFalse((new InstantCommand(()-> compressor.disable())));
     RightStickButton2.whileTrue(new InstantCommand(()-> compressor.enableAnalog(0, 120)));
 
 
