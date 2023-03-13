@@ -130,22 +130,18 @@ public class SwerveSubsystem extends SubsystemBase {
   }
 
   public void Lock(){
-    for (SwerveModule mod : SwerveMods) {
-      SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-      SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-      SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-      SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-    }
+    SwerveMods[0].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+    SwerveMods[1].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+    SwerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+    SwerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
   }
 
     //realigns all modules
     public void resetModules() {
-      for (SwerveModule mod : SwerveMods) {
-        SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
-        SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
-        SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
-        SwerveMods[mod.moduleNumber].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
-      }
+    SwerveMods[0].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+    SwerveMods[1].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+    SwerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
+    SwerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(0)));
     }
 
   //Ressetting the Pigeon Gyroscope in order for feild centric driving
