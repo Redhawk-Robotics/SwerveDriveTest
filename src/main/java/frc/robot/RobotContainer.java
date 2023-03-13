@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import frc.robot.commands.Autons.DoNothingAuton;
+import frc.robot.commands.Autons.TestPathPlannerAuton;
 import frc.robot.commands.Claw.Claw;
 import frc.robot.commands.Swerve.Drive;
 import frc.robot.commands.test.testMotorCommand;
@@ -165,7 +167,9 @@ public class RobotContainer {
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
 
-    lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));
+    lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));//try this line if not add whiletrue
+    //lock.onTrue(new RepeatCommand(new InstantCommand(() -> SwerveDrive.Lock())));
+
     
     bButton1.whileTrue(new InstantCommand(() -> testers.upGoArm()));
     bButton1.whileFalse(new InstantCommand(() -> testers.stopArm()));
@@ -215,8 +219,10 @@ public class RobotContainer {
   /**************/
 
   public void configureAutons() {
-    // autonChooser.setDefaultOption("Do Nothing", new DoNothingAuton());
     SmartDashboard.putData("Autonomous: ", Autons);
+
+    Autons.setDefaultOption("Do Nothing", new DoNothingAuton());
+    //Autons.addOption("AutoBalance", new TestPathPlannerAuton());
   }
 
   /**
