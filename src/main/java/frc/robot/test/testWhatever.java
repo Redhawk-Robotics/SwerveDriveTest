@@ -40,8 +40,8 @@ public class testWhatever extends SubsystemBase {
   private double extenderSpeed = 0.75;
   private double extenderSpeedReverse = -0.75;
 
-  private double wristSpeed = 0.5;
-  private double wristSpeedReverse = -0.5;
+  private double wristSpeed = 0.25;
+  private double wristSpeedReverse = -0.25;
 
   private double armSpeed = 0.3;
   private double armSpeedReverse = -0.3;
@@ -52,16 +52,16 @@ public class testWhatever extends SubsystemBase {
   private double EncoderValue;
 
 public testWhatever() {
-armMotorLeft = new CANSparkMax(16, MotorType.kBrushless);
-armMotorRight = new CANSparkMax(21, MotorType.kBrushless);
+armMotorLeft = new CANSparkMax(62, MotorType.kBrushless);
+armMotorRight = new CANSparkMax(24, MotorType.kBrushless);
 
-leftClaw = new CANSparkMax(62, MotorType.kBrushless);
-rightClaw = new CANSparkMax(49, MotorType.kBrushless);
+leftClaw = new CANSparkMax(16, MotorType.kBrushless);
+rightClaw = new CANSparkMax(21, MotorType.kBrushless);
 
-wrist = new CANSparkMax(24, MotorType.kBrushless);
+wrist = new CANSparkMax(27, MotorType.kBrushless);
 
 
-extender = new CANSparkMax(22, MotorType.kBrushless);
+extender = new CANSparkMax(49, MotorType.kBrushless);
 
 
 clawOpen = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);

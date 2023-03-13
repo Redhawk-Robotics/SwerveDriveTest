@@ -80,9 +80,9 @@ public class RobotContainer {
   // Additional buttons
   private final Trigger lock = new JoystickButton(DRIVER, XboxController.Button.kLeftBumper.value);
 
-  private final Trigger tester = new JoystickButton(DRIVER, XboxController.Button.kB.value);
+  private final Trigger bButton1 = new JoystickButton(DRIVER, XboxController.Button.kB.value);
   
-  private final Trigger tester2 = new JoystickButton(DRIVER, XboxController.Button.kX.value);
+  private final Trigger xButton1 = new JoystickButton(DRIVER, XboxController.Button.kX.value);
 
   //Controller two
   private final Trigger Abutton2 = new JoystickButton(OPERATOR, XboxController.Button.kA.value);
@@ -167,11 +167,11 @@ public class RobotContainer {
 
     lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));
     
-    tester.whileTrue(new InstantCommand(() -> testers.upGoArm()));
-    tester.whileFalse(new InstantCommand(() -> testers.stopArm()));
+    bButton1.whileTrue(new InstantCommand(() -> testers.upGoArm()));
+    bButton1.whileFalse(new InstantCommand(() -> testers.stopArm()));
 
-    tester2.whileTrue(new InstantCommand(() -> testers.downGoArm()));
-    tester2.whileFalse(new InstantCommand(() -> testers.stopArm()));
+    xButton1.whileTrue(new InstantCommand(() -> testers.downGoArm()));
+    xButton1.whileFalse(new InstantCommand(() -> testers.stopArm()));
 
     //Compressor 
     Abutton2.onTrue(new InstantCommand(()-> testers.upGoClaw()));
