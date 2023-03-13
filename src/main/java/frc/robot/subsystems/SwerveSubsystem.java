@@ -28,7 +28,11 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModule[] SwerveMods;
   private PigeonModule m_Pigeon;
   private Field2d field;
-  private SwerveModule module;
+
+  private SwerveModule frontLeftModule0;
+  private SwerveModule frontRightModule1;
+  private SwerveModule backLeftModule2;
+  private SwerveModule backRightModule3;
 
   public SwerveSubsystem() {
     // By default we use a Pigeon for our gyroscope. But if you use another
@@ -50,6 +54,11 @@ public class SwerveSubsystem extends SubsystemBase {
         new SwerveModule(2, Ports.backLeftModule2.constants),
         new SwerveModule(3, Ports.backRightModule3.constants)
     };
+
+    frontLeftModule0 = new SwerveModule(0, Ports.frontLeftModule0.constants);
+    frontRightModule1 = new SwerveModule(1, Ports.frontRightModule1.constants);
+    backLeftModule2 = new SwerveModule(2, Ports.backLeftModule2.constants);
+    backRightModule3 = new SwerveModule(3, Ports.backRightModule3.constants);
 
     //Creating the odometry of the robot
     swerveOdometry = new SwerveDriveOdometry(Setting.mKinematics, getYaw(), getPositions());
@@ -134,6 +143,12 @@ public class SwerveSubsystem extends SubsystemBase {
     SwerveMods[1].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
     SwerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
     SwerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+
+    //if doesn't work
+    // frontLeftModule0.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+    // frontRightModule1.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+    // backLeftModule2.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+    // backRightModule3.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
   }
 
     //realigns all modules

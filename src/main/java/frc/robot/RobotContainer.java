@@ -167,7 +167,9 @@ public class RobotContainer {
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
 
-    lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));
+    lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));//try this line if not add whiletrue
+    //lock.onTrue(new RepeatCommand(new InstantCommand(() -> SwerveDrive.Lock())));
+
     
     tester.whileTrue(new InstantCommand(() -> testers.upGoArm()));
     tester.whileFalse(new InstantCommand(() -> testers.stopArm()));
