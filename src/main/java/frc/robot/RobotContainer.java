@@ -21,6 +21,7 @@ import frc.robot.test.testWhatever;
 import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -49,11 +50,8 @@ public class RobotContainer {
   private final PDH powerDistributionHub = new PDH();
   private final testWhatever testers = new testWhatever();
 
-  private final CompressorModule compressor = CompressorModule.getCompressorModule();
-
-
-  //private final armTest arm = new armTest();
-  //private final intakeTest intake = new intakeTest();
+  //private final CompressorModule compressor = CompressorModule.getCompressorModule();
+  private PneumaticHub compressor = new PneumaticHub(1);;
 
   /* Commands */
 
@@ -63,7 +61,6 @@ public class RobotContainer {
 
   private final XboxController OPERATOR = new XboxController(Ports.Gamepad.OPERATOR);
 
-  
   private final boolean power = DRIVER.getAButton();
 
   private final testMotorCommand testmotor = new testMotorCommand(testers, power);
@@ -85,6 +82,12 @@ public class RobotContainer {
   private final Trigger bButton1 = new JoystickButton(DRIVER, XboxController.Button.kB.value);
   
   private final Trigger xButton1 = new JoystickButton(DRIVER, XboxController.Button.kX.value);
+
+  private final Trigger startButton1 = new JoystickButton(DRIVER, XboxController.Button.kStart.value);
+  private final Trigger BackButton1 = new JoystickButton(DRIVER, XboxController.Button.kBack.value);
+
+  private final Trigger LeftStickButton1 = new JoystickButton(DRIVER, XboxController.Button.kLeftStick.value);
+  private final Trigger RightStickButton1 = new JoystickButton(DRIVER, XboxController.Button.kRightStick.value);
 
   //Controller two
   private final Trigger Abutton2 = new JoystickButton(OPERATOR, XboxController.Button.kA.value);
@@ -145,13 +148,11 @@ public class RobotContainer {
   /****************/
 
   private void configureDefaultCommands() {
-    //compressor.disable();
-    //compressor.disableCompressor();
-    //compressor.enableAnalog(0, 120);
-    //compressor.enableDigital();//FIXME Try later
+    compressor.disableCompressor();
+    //compressor.enableCompressorAnalog(0, 120); //try if the disablecompressor work
   }
 
-  /***************/
+  /***************/ 
   /*** BUTTONS ***/
   /***************/
 
@@ -177,7 +178,6 @@ public class RobotContainer {
     xButton1.whileTrue(new InstantCommand(() -> testers.downGoArm()));
     xButton1.whileFalse(new InstantCommand(() -> testers.stopArm()));
 
-    //Compressor 
     Abutton2.onTrue(new InstantCommand(()-> testers.upGoClaw()));
     Abutton2.onFalse(new InstantCommand(()-> testers.stopClaw()));
 
@@ -203,7 +203,8 @@ public class RobotContainer {
     BackButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
 
     //LeftStickButton2.whileFalse((new InstantCommand(()-> compressor.disable())));
-    RightStickButton2.whileTrue(new InstantCommand(()-> compressor.enableAnalog(0, 120)));
+    startButton1.onTrue(new InstantCommand(()-> compressor.enableCompressorAnalog(0, 120)));
+    BackButton1.onTrue(new InstantCommand(()-> compressor.disableCompressor()));
 
 
     // System.out.print("Swervy");
