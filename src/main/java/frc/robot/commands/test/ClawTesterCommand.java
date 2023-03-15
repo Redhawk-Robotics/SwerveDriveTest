@@ -28,7 +28,7 @@ public class ClawTesterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.compressor.enableAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
+    this.compressor.enableCompressorAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
     this.claw.stopMotors();
   }
 

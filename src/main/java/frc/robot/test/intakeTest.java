@@ -28,7 +28,7 @@ public class intakeTest extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    compressor.enableAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
+    compressor.enableCompressorAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
     SmartDashboard.putBoolean("Reached max pressure", compressor.isEnabled() ? true : false);
     SmartDashboard.putNumber("Pressure", compressor.getPressure());
     intakeUp();
