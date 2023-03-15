@@ -3,10 +3,12 @@ package frc.robot.subsystems.modules;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import frc.robot.constants.Setting;
+import edu.wpi.first.wpilibj.PneumaticHub;
 
 public class CompressorModule {
-    
+
     private final Compressor compressor;
+    
     private static CompressorModule singleton;
 
     public CompressorModule() {
@@ -38,7 +40,7 @@ public class CompressorModule {
         } else if (pressure >= 60) {
             enableAnalog(Setting.compressor.absoluteMinPressure, Setting.compressor.absoluteMaxPressure);
         } else {
-            enableAnalog(Setting.compressor.relativeMinPressure,Setting.compressor.absoluteMaxPressure);
+            enableAnalog(Setting.compressor.relativeMinPressure, Setting.compressor.absoluteMaxPressure);
         }
     }
 }
