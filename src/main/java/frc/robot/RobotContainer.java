@@ -4,13 +4,25 @@
 
 package frc.robot;
 
+import frc.robot.commands.Autons.DoNothingAuton;
+import frc.robot.commands.Autons.TestPathPlannerAuton;
 import frc.robot.commands.Claw.Claw;
 import frc.robot.commands.Swerve.Drive;
+import frc.robot.commands.test.testMotorCommand;
 import frc.robot.constants.Ports;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.modules.CompressorModule;
+import frc.robot.subsystems.modules.PDH;
 import frc.robot.test.armTest;
 import frc.robot.test.clawTest;
 import frc.robot.test.intakeTest;
+import frc.robot.test.testWhatever;
+
+import java.util.function.BooleanSupplier;
+
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticHub;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,10 +47,11 @@ public class RobotContainer {
 
   /* Subsystems */
   private final SwerveSubsystem SwerveDrive = new SwerveSubsystem();
-  //private final armTest arm = new armTest();
-  //private final intakeTest intake = new intakeTest();
-  private final clawTest clawSubsystem = new clawTest();
-  private final Claw claw = new Claw(clawSubsystem);
+  private final PDH powerDistributionHub = new PDH();
+  private final testWhatever testers = new testWhatever();
+
+  //private final CompressorModule compressor = CompressorModule.getCompressorModule();
+  private PneumaticHub compressor = new PneumaticHub(1);;
 
   /* Commands */
 
@@ -47,6 +60,10 @@ public class RobotContainer {
   private final XboxController DRIVER = new XboxController(Ports.Gamepad.DRIVER);
 
   private final XboxController OPERATOR = new XboxController(Ports.Gamepad.OPERATOR);
+
+  private final boolean power = DRIVER.getAButton();
+
+  private final testMotorCommand testmotor = new testMotorCommand(testers, power);
 
   /* Drive Controls */
   private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -60,9 +77,33 @@ public class RobotContainer {
   private final Trigger slowSpeed = new JoystickButton(DRIVER, XboxController.Button.kRightBumper.value);
 
   // Additional buttons
-  private final Trigger highGrid = new JoystickButton(DRIVER, XboxController.Button.kLeftBumper.value);
+  private final Trigger lock = new JoystickButton(DRIVER, XboxController.Button.kLeftBumper.value);
 
-  private final Trigger tester = new JoystickButton(DRIVER, XboxController.Button.kB.value);
+  private final Trigger bButton1 = new JoystickButton(DRIVER, XboxController.Button.kB.value);
+  
+  private final Trigger xButton1 = new JoystickButton(DRIVER, XboxController.Button.kX.value);
+
+  private final Trigger startButton1 = new JoystickButton(DRIVER, XboxController.Button.kStart.value);
+  private final Trigger BackButton1 = new JoystickButton(DRIVER, XboxController.Button.kBack.value);
+
+  private final Trigger LeftStickButton1 = new JoystickButton(DRIVER, XboxController.Button.kLeftStick.value);
+  private final Trigger RightStickButton1 = new JoystickButton(DRIVER, XboxController.Button.kRightStick.value);
+
+  //Controller two
+  private final Trigger Abutton2 = new JoystickButton(OPERATOR, XboxController.Button.kA.value);
+  private final Trigger Bbutton2 = new JoystickButton(OPERATOR, XboxController.Button.kB.value);
+  private final Trigger Xbutton2 = new JoystickButton(OPERATOR, XboxController.Button.kX.value);
+  private final Trigger Ybutton2 = new JoystickButton(OPERATOR, XboxController.Button.kY.value);
+
+  private final Trigger RightBumper2 = new JoystickButton(OPERATOR, XboxController.Button.kRightBumper.value);
+  private final Trigger leftBumper2 = new JoystickButton(OPERATOR, XboxController.Button.kLeftBumper.value);
+
+  private final Trigger startButton2 = new JoystickButton(OPERATOR, XboxController.Button.kStart.value);
+  private final Trigger BackButton2 = new JoystickButton(OPERATOR, XboxController.Button.kBack.value);
+
+  private final Trigger LeftStickButton2 = new JoystickButton(OPERATOR, XboxController.Button.kLeftStick.value);
+  private final Trigger RightStickButton2 = new JoystickButton(OPERATOR, XboxController.Button.kRightStick.value);
+
 
   // TODO May need to switch the object for each button to JoystickButton
   // Create SmartDashboard chooser for autonomous routines
@@ -107,9 +148,11 @@ public class RobotContainer {
   /****************/
 
   private void configureDefaultCommands() {
+    compressor.disableCompressor();
+    //compressor.enableCompressorAnalog(0, 120); //try if the disablecompressor work
   }
 
-  /***************/
+  /***************/ 
   /*** BUTTONS ***/
   /***************/
 
@@ -124,7 +167,45 @@ public class RobotContainer {
 
     // DRVIER.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     zeroGyro.onTrue(new InstantCommand(() -> SwerveDrive.zeroGyro()));// A value for the Xbox Controller
-    //tester.whileTrue(new InstantCommand(() -> intake.intakeDown()));
+
+    //lock.onTrue(new InstantCommand(() -> SwerveDrive.Lock()));//try this line if not add whiletrue
+    //lock.onTrue(new RepeatCommand(new InstantCommand(() -> SwerveDrive.Lock())));
+
+    
+    bButton1.whileTrue(new InstantCommand(() -> testers.upGoArm()));
+    bButton1.whileFalse(new InstantCommand(() -> testers.stopArm()));
+
+    xButton1.whileTrue(new InstantCommand(() -> testers.downGoArm()));
+    xButton1.whileFalse(new InstantCommand(() -> testers.stopArm()));
+
+    Abutton2.onTrue(new InstantCommand(()-> testers.upGoClaw()));
+    Abutton2.onFalse(new InstantCommand(()-> testers.stopClaw()));
+
+    Bbutton2.onTrue(new InstantCommand(()-> testers.downGoClaw()));
+    Bbutton2.onFalse(new InstantCommand(()-> testers.stopClaw()));
+
+    //solenoids
+    Xbutton2.onTrue(new InstantCommand(()-> testers.openClaw()));
+    Ybutton2.onTrue(new InstantCommand(()-> testers.closeClaw()));
+
+    leftBumper2.onTrue(new InstantCommand(()-> testers.upGoWrist()));
+    leftBumper2.onFalse(new InstantCommand(()-> testers.stopWrist()));
+
+    RightBumper2.onTrue(new InstantCommand(()-> testers.downGoWrist()));
+    RightBumper2.onFalse(new InstantCommand(()-> testers.stopWrist()));
+
+
+    //extender and wrist needs another button to go back
+    startButton2.onTrue(new InstantCommand(()-> testers.upExtender()));
+    startButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
+
+    BackButton2.onTrue(new InstantCommand(()-> testers.downExtender()));
+    BackButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
+
+    //LeftStickButton2.whileFalse((new InstantCommand(()-> compressor.disable())));
+    startButton1.onTrue(new InstantCommand(()-> compressor.enableCompressorAnalog(0, 120)));
+    BackButton1.onTrue(new InstantCommand(()-> compressor.disableCompressor()));
+
 
     // System.out.print("Swervy");
 
@@ -139,8 +220,10 @@ public class RobotContainer {
   /**************/
 
   public void configureAutons() {
-    // autonChooser.setDefaultOption("Do Nothing", new DoNothingAuton());
     SmartDashboard.putData("Autonomous: ", Autons);
+
+    Autons.setDefaultOption("Do Nothing", new DoNothingAuton());
+    //Autons.addOption("AutoBalance", new TestPathPlannerAuton());
   }
 
   /**

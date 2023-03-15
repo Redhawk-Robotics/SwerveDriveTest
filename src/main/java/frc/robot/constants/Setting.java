@@ -1,14 +1,17 @@
 package frc.robot.constants;
 
+import java.util.HashMap;
+
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj2.command.Command;
 
 public interface Setting {
     /* Swerve Voltage Compensation */
-    public static final double voltageComp = 12;    
+    public static final double voltageComp = 8.5;    
 
     //RobotCharacterizations
     public static final double drivetrainTrackWidthMeters = Units.inchesToMeters(28.5);
@@ -119,8 +122,6 @@ public interface Setting {
 
         public static final IdleMode clawNeutralMode = IdleMode.kBrake;
 
-        public static final boolean leftClawMotorInvert = true;
-        public static final boolean rightClawMotorInvert = false;
     }
 
     public static final class armSetting{
@@ -137,8 +138,6 @@ public interface Setting {
 
         public static final IdleMode armNeutralMode = IdleMode.kCoast;
 
-        public static final boolean leftArmMotorInvert = true;
-        public static final boolean rightArmMotorInvert = false;
    }
    public static final class extenderSetting{
         public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
@@ -153,11 +152,21 @@ public interface Setting {
         public static final int extenderContinousCurrentLimit = 40; 
 
         public static final IdleMode extenderNeutralMode = IdleMode.kBrake;
-
-        public static final boolean ExtenderMotorInvert = false;
    }
    
     public static final class AutoConstants {
+        //tune later
+        
+        public static final double kMaxSpeedMetersPerSecond = 3;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+        public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
+        public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
+    
+        public static final double kPXController = 1.05;
+        public static final double kPYController = 1.05;
+        public static final double kPThetaController = 1;
+
+        public static final HashMap<String, Command> EventMap = new HashMap<>();
 
     }
 }

@@ -27,8 +27,8 @@ public class clawTest extends SubsystemBase {
 
   /** Creates a new clawTest. */
   public clawTest() {
-    leftNeo550 = new CANSparkMax(Ports.claw.leftClaw, MotorType.kBrushless);
-    rightNeo550 = new CANSparkMax(Ports.claw.rightClaw, MotorType.kBrushless);
+    leftNeo550 = new CANSparkMax(Ports.Claw.leftClaw, MotorType.kBrushless);
+    rightNeo550 = new CANSparkMax(Ports.Claw.rightClaw, MotorType.kBrushless);
     leftEncoder = leftNeo550.getEncoder();
     righEncoder = rightNeo550.getEncoder();
     leftPIDController = leftNeo550.getPIDController();
@@ -38,8 +38,8 @@ public class clawTest extends SubsystemBase {
     configClawMotor(rightNeo550, righEncoder, rightPIDController, false);
 
     clawSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, Setting.clawPneumatic.clawForwardChan, Setting.clawPneumatic.clawReverseChan);
-    configClawMotor(leftNeo550, leftEncoder, leftPIDController, Setting.clawSetting.leftClawMotorInvert);
-    configClawMotor(rightNeo550, righEncoder, rightPIDController, Setting.clawSetting.rightClawMotorInvert);
+    configClawMotor(leftNeo550, leftEncoder, leftPIDController, Ports.Claw.leftClawMotorInvert);
+    configClawMotor(rightNeo550, righEncoder, rightPIDController, Ports.Claw.rightClawMotorInvert);
   }
 
   @Override
