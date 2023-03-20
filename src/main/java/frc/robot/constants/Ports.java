@@ -42,7 +42,7 @@ public static final class Arm{
     public static final boolean rightArmMotorInvert = false;
 }
 public static final class Extender{
-    public static final int extend = 15;
+    public static final int extender = 15;
 
     public static final boolean ExtenderMotorInvert = false;
 }
@@ -52,6 +52,11 @@ public static final class Claw{
 
     public static final boolean leftClawMotorInvert = true;
     public static final boolean rightClawMotorInvert = false;
+}
+public static final class Wrist{
+    public static final int wrist = 18;
+
+    public static final boolean wristMotorInvert = true;
 }
 //FRONT_LEFT_MODULE
 public static final class frontLeftModule0{

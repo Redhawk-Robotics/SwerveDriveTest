@@ -2,13 +2,13 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.arm;
+package frc.robot.commands.extender;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Arm extends CommandBase {
-  /** Creates a new Arm. */
-  public Arm() {
+public class ExtenderManual extends CommandBase {
+  /** Creates a new Extender. */
+  public ExtenderManual() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

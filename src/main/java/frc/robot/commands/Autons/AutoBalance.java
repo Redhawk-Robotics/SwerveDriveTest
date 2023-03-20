@@ -68,7 +68,7 @@ public class AutoBalance extends CommandBase {
 
     // Might need to clamp the transilation values
     s_Swerve.drive(
-        new Translation2d(0, strafeVal),
+        new Translation2d(0, strafeVal),//FIXME why is this strafeVal in the y-value
         0,
         true,
         true);

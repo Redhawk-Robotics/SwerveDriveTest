@@ -9,14 +9,14 @@ import frc.robot.constants.Setting;
 import frc.robot.subsystems.modules.CompressorModule;
 import frc.robot.test.clawTest;
 
-public class Claw extends CommandBase {
+public class ClawManual extends CommandBase {
   /** Creates a new Claw. */
   private clawTest claw;
   private CompressorModule compressor;
   
   // FINISH the stuff here
 
-  public Claw(clawTest claw) {
+  public ClawManual(clawTest claw) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.claw = claw;
     addRequirements(claw);

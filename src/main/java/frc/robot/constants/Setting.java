@@ -120,7 +120,7 @@ public interface Setting {
 
         public static final int clawContinousCurrentLimit = 40; 
 
-        public static final IdleMode clawNeutralMode = IdleMode.kBrake;
+        public static final IdleMode clawNeutralMode = IdleMode.kCoast;
 
     }
 
@@ -153,6 +153,20 @@ public interface Setting {
 
         public static final IdleMode extenderNeutralMode = IdleMode.kBrake;
    }
+   public static final class wristSetting{
+    public static final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.1 * Math.PI;
+
+    public static final double wristP = 0;
+    public static final double wristI = 0;
+    public static final double wristD = 0;
+    public static final double wristFF = 0;
+    public static final double maxVoltage = 0;
+    public static final double wristConversionFactor = 0;//FIXME need to find the conversion Factor
+    
+    public static final int wristContinousCurrentLimit = 40; 
+
+    public static final IdleMode wristNeutralMode = IdleMode.kBrake;
+}
    
     public static final class AutoConstants {
         //tune later

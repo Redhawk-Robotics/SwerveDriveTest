@@ -27,7 +27,7 @@ public class extenderTest extends SubsystemBase {
   private double extenderEncoderValue;
 
   public extenderTest() {
-    extenderMotor = new CANSparkMax(Ports.Extender.extend, MotorType.kBrushless);
+    extenderMotor = new CANSparkMax(Ports.Extender.extender, MotorType.kBrushless);
     extenderEncoder = extenderMotor.getEncoder();
 
     extenderController = extenderMotor.getPIDController();
