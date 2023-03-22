@@ -46,6 +46,8 @@ private double wristEncoderValue;
 
     SmartDashboard.putNumber("wrist Reverse Soft Limit",
     wristMotor.getSoftLimit(CANSparkMax.SoftLimitDirection.kReverse));
+
+    resetEncoder();
     //enableMotors(true);//TODO test later
   }
 

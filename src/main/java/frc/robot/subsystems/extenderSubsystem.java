@@ -43,6 +43,8 @@ public extenderSubsystem() {
 
   SmartDashboard.putNumber("extender Reverse Soft Limit",
   extenderMotor.getSoftLimit(CANSparkMax.SoftLimitDirection.kReverse));
+  
+  resetEncoder();
 
   //enableMotors(true);//TODO test later
 }

@@ -52,16 +52,16 @@ public class testWhatever extends SubsystemBase {
   private double EncoderValue;
 
 public testWhatever() {
-armMotorLeft = new CANSparkMax(62, MotorType.kBrushless);
-armMotorRight = new CANSparkMax(24, MotorType.kBrushless);
+armMotorLeft = new CANSparkMax(9, MotorType.kBrushless);
+armMotorRight = new CANSparkMax(10, MotorType.kBrushless);
 
-leftClaw = new CANSparkMax(16, MotorType.kBrushless);
-rightClaw = new CANSparkMax(21, MotorType.kBrushless);
+leftClaw = new CANSparkMax(12, MotorType.kBrushless);
+rightClaw = new CANSparkMax(13, MotorType.kBrushless);
 
-wrist = new CANSparkMax(27, MotorType.kBrushless);
+wrist = new CANSparkMax(14, MotorType.kBrushless);
 
 
-extender = new CANSparkMax(49, MotorType.kBrushless);
+extender = new CANSparkMax(11, MotorType.kBrushless);
 
 
 clawOpen = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);

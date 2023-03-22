@@ -45,10 +45,10 @@ public class RobotContainer {
   private final PDH powerDistributionHub = new PDH();
   private final testWhatever testers = new testWhatever();
 
-  private final WristSubsystem wristSubsystem = new WristSubsystem();
+  // private final WristSubsystem wristSubsystem = new WristSubsystem();
 
   //private final CompressorModule compressor = CompressorModule.getCompressorModule();
-  private PneumaticHub compressor = new PneumaticHub(1);
+  private PneumaticHub compressor = new PneumaticHub(62);
 
   /* Commands */
 
@@ -130,9 +130,9 @@ public class RobotContainer {
 
     // Configure the trigger bindings, defaults, Autons
 
-    wristSubsystem.setDefaultCommand(
-        new WristManual(wristSubsystem,
-            () -> OPERATOR.getRawAxis(rightYAxis2)));
+    // wristSubsystem.setDefaultCommand(
+    //     new WristManual(wristSubsystem,
+    //         () -> OPERATOR.getRawAxis(rightYAxis2)));
 
     configureDefaultCommands();
     configureButtonBindings();
@@ -212,10 +212,10 @@ public class RobotContainer {
     BackButton2.onTrue(new InstantCommand(()-> testers.downExtender()));
     BackButton2.onFalse(new InstantCommand(()-> testers.stopExtender()));
 
-    BackButton1.onTrue(new InstantCommand(()-> compressor.disableCompressor()));
+    // BackButton1.onTrue(new InstantCommand(()-> compressor.disableCompressor()));
 
     //LeftStickButton2.whileFalse((new InstantCommand(()-> compressor.disable())));
-    startButton1.onTrue(new InstantCommand(()-> new WristSetPoint(wristSubsystem, 0.5)));//try out cmd
+    // startButton1.onTrue(new InstantCommand(()-> new WristSetPoint(wristSubsystem, 0.5)));//try out cmd
 
 
   }
@@ -228,7 +228,7 @@ public class RobotContainer {
     SmartDashboard.putData("Autonomous: ", Autons);
 
     Autons.setDefaultOption("Do Nothing", new DoNothingAuton());
-    Autons.addOption("mobility", new mobilitytest());
+    // Autons.addOption("mobility", new mobilitytest());
     //Autons.addOption("AutoBalance", new TestPathPlannerAuton());
   }
 

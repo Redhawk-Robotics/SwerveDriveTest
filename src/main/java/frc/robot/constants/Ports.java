@@ -35,32 +35,32 @@ public static final class Compressor{
     public static final int port = 1;
 }
 public static final class Arm{
-    public static final int leftArm = 13;
-    public static final int rightArm = 14;
+    public static final int leftArm = 9;
+    public static final int rightArm = 10;
 
     public static final boolean leftArmMotorInvert = true;
     public static final boolean rightArmMotorInvert = false;
 }
 public static final class Extender{
-    public static final int extender = 15;
+    public static final int extender = 11;
 
     public static final boolean ExtenderMotorInvert = false;
 }
 public static final class Claw{
-    public static final int leftClaw = 16;
-    public static final int rightClaw = 17;
+    public static final int leftClaw = 12;
+    public static final int rightClaw = 13;
 
     public static final boolean leftClawMotorInvert = true;
     public static final boolean rightClawMotorInvert = false;
 }
 public static final class Wrist{
-    public static final int wrist = 18;
+    public static final int wrist = 14;
 
     public static final boolean wristMotorInvert = true;
 }
 //FRONT_LEFT_MODULE
 public static final class frontLeftModule0{
-    public static final int frontLeftModuleDriveMotor = 1; // FIXME Set front left module drive motor ID 
+    public static final int frontLeftModuleDriveMotor = 55; // FIXME Set front left module drive motor ID 
     public static final int frontLeftModuleSteerMotor = 2; // FIXME Set front left module steer motor ID
     public static final int frontLeftModuleSteerEncoder = 11; // FIXME Set front left steer encoder ID 
     public static final Rotation2d frontLeftModuleSteerOffSet = Rotation2d.fromDegrees(297.861328125); // FIXME Measure and set front left steer offset

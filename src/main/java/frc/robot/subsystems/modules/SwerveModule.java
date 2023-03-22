@@ -92,7 +92,7 @@ public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants){
      * try the set desired states
      */
     //Creates desiredState of the Swervemodules which is WPILIB solution for swerveDrive kinematics
-public void setDesiredStatesOld(SwerveModuleState desiredState, boolean isOpenLoop) {
+public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
     // Custom optimize command, since default WPILib optimize assumes continuous controller which
     // REV and CTRE are not
     desiredState = OnboardModuleState.optimize(desiredState, getState().angle);
@@ -105,7 +105,7 @@ public void setDesiredStatesOld(SwerveModuleState desiredState, boolean isOpenLo
    *
    * @param desiredState Desired state with speed and angle.
    */
-  public void setDesiredState(SwerveModuleState desiredState) {//switch if not desired for driving
+  public void setDesiredStateOld(SwerveModuleState desiredState) {//switch if not desired for driving
     // Apply chassis angular offset to the desired state.
     SwerveModuleState correctedDesiredState = new SwerveModuleState();
     correctedDesiredState.speedMetersPerSecond = desiredState.speedMetersPerSecond;

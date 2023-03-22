@@ -57,6 +57,8 @@ public class ArmSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Reverse Soft Limit",
     leftArmMotor.getSoftLimit(CANSparkMax.SoftLimitDirection.kReverse));
 
+    resetEncoder();
+
     //enableMotors(true);//TODO test later
     
   }
